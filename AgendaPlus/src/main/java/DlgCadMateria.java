@@ -23,6 +23,8 @@ public class DlgCadMateria extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         
+        BtnAddMateria.setEnabled(false);
+        
         TxtNome.addKeyListener(new KeyAdapter(){
             public void keyReleased(KeyEvent e){
                 verificarCamposObrigatorios();
