@@ -271,6 +271,8 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
 
     private void BtnRegDesempenhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegDesempenhoActionPerformed
         // TODO add your handling code here:
+        DlgRegDesempenho jdesempenho = new DlgRegDesempenho(this,true);
+        jdesempenho.setVisible(true);
     }//GEN-LAST:event_BtnRegDesempenhoActionPerformed
 
     private void BtnCadMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadMateriaActionPerformed
@@ -285,6 +287,8 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
 
     private void RegDesempenhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegDesempenhoActionPerformed
         // TODO add your handling code here:
+        DlgRegDesempenho jdesempenho = new DlgRegDesempenho(this,true);
+        jdesempenho.setVisible(true);
     }//GEN-LAST:event_RegDesempenhoActionPerformed
 
     /**
