@@ -35,18 +35,18 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        BtnRegSessao = new javax.swing.JButton();
+        BtnRegDesempenho = new javax.swing.JButton();
+        BtnVerRevisao = new javax.swing.JButton();
+        BtnCadMateria = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        CadMateria = new javax.swing.JMenuItem();
+        Sair = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        RegSessao = new javax.swing.JMenuItem();
+        RegDesempenho = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
         jButton1.setText("Sair");
@@ -123,31 +123,31 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton2.setText("Registar Estudo");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BtnRegSessao.setText("Registar Sessão");
+        BtnRegSessao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BtnRegSessaoActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Registar Desempenho");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        BtnRegDesempenho.setText("Registar Desempenho");
+        BtnRegDesempenho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                BtnRegDesempenhoActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Ver Revisões");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        BtnVerRevisao.setText("Ver Revisões");
+        BtnVerRevisao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                BtnVerRevisaoActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Cadastrar Matéria");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        BtnCadMateria.setText("Cadastrar Matéria");
+        BtnCadMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                BtnCadMateriaActionPerformed(evt);
             }
         });
 
@@ -157,13 +157,13 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnCadMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnRegSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(BtnRegDesempenho)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnVerRevisao, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -171,25 +171,25 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BtnRegSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnCadMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnRegDesempenho, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnVerRevisao, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Cadastro");
 
-        jMenuItem1.setText("Cadastrar Matéria");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        CadMateria.setText("Cadastrar Matéria");
+        CadMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                CadMateriaActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(CadMateria);
 
-        jMenuItem2.setText("Sair");
-        jMenu1.add(jMenuItem2);
+        Sair.setText("Sair");
+        jMenu1.add(Sair);
 
         jMenuBar1.add(jMenu1);
 
@@ -197,16 +197,21 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
 
         jMenu4.setText("Registrar");
 
-        jMenuItem3.setText("Sessão");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        RegSessao.setText("Sessão");
+        RegSessao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                RegSessaoActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem3);
+        jMenu4.add(RegSessao);
 
-        jMenuItem4.setText("Desempenho");
-        jMenu4.add(jMenuItem4);
+        RegDesempenho.setText("Desempenho");
+        RegDesempenho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegDesempenhoActionPerformed(evt);
+            }
+        });
+        jMenu4.add(RegDesempenho);
 
         jMenu2.add(jMenu4);
 
@@ -242,37 +247,45 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void CadMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadMateriaActionPerformed
         // TODO add your handling code here:
         DlgCadMateria jcadMateria = new DlgCadMateria(this, true);
         jcadMateria.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_CadMateriaActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void RegSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegSessaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+        DlgSessaoEstudo jsessaoEstudo = new DlgSessaoEstudo(this, true);
+        jsessaoEstudo.setVisible(true);
+    }//GEN-LAST:event_RegSessaoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BtnRegSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegSessaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        DlgSessaoEstudo jsessaoEstudo = new DlgSessaoEstudo(this, true);
+        jsessaoEstudo.setVisible(true);
+    }//GEN-LAST:event_BtnRegSessaoActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void BtnRegDesempenhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegDesempenhoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_BtnRegDesempenhoActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void BtnCadMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadMateriaActionPerformed
         // TODO add your handling code here:
         DlgCadMateria jcadMateria = new DlgCadMateria(this, true);
         jcadMateria.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_BtnCadMateriaActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void BtnVerRevisaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerRevisaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_BtnVerRevisaoActionPerformed
+
+    private void RegDesempenhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegDesempenhoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RegDesempenhoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -300,11 +313,15 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnCadMateria;
+    private javax.swing.JButton BtnRegDesempenho;
+    private javax.swing.JButton BtnRegSessao;
+    private javax.swing.JButton BtnVerRevisao;
+    private javax.swing.JMenuItem CadMateria;
+    private javax.swing.JMenuItem RegDesempenho;
+    private javax.swing.JMenuItem RegSessao;
+    private javax.swing.JMenuItem Sair;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -313,10 +330,6 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
