@@ -1,6 +1,8 @@
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -25,10 +27,22 @@ public class DlgCadMateria extends javax.swing.JDialog {
         
         BtnAddMateria.setEnabled(false);
         
-        TxtNome.addKeyListener(new KeyAdapter(){
-            public void keyReleased(KeyEvent e){
+        TxtNome.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
                 verificarCamposObrigatorios();
             }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                verificarCamposObrigatorios();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                verificarCamposObrigatorios();
+            }
+            
         });
     }
    
@@ -94,7 +108,6 @@ public class DlgCadMateria extends javax.swing.JDialog {
         });
 
         BtnAddMateria.setText("Adicionar");
-        BtnAddMateria.setEnabled(false);
         BtnAddMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAddMateriaActionPerformed(evt);
