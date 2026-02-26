@@ -62,6 +62,9 @@ public class DlgCadMateria extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        popupTabela = new javax.swing.JPopupMenu();
+        menuEditar = new javax.swing.JMenuItem();
+        menuExcluir = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -78,6 +81,17 @@ public class DlgCadMateria extends javax.swing.JDialog {
         BtnSalvar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         TabMateria = new javax.swing.JTable();
+
+        menuEditar.setText("Editar");
+        popupTabela.add(menuEditar);
+
+        menuExcluir.setText("Excluir");
+        menuExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnExcluirActionPerformed(evt);
+            }
+        });
+        popupTabela.add(menuExcluir);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Matéria");
@@ -242,6 +256,7 @@ public class DlgCadMateria extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        TabMateria.setComponentPopupMenu(popupTabela);
         TabMateria.setShowHorizontalLines(true);
         TabMateria.setShowVerticalLines(true);
         TabMateria.addContainerListener(new java.awt.event.ContainerAdapter() {
@@ -283,7 +298,11 @@ public class DlgCadMateria extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnEditarActionPerformed
 
     private void BtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcluirActionPerformed
-        // TODO add your handling code here:
+        int linha = TabMateria.getSelectedRow();
+        if(linha >=0){
+            tblModelMateria.remover(linha);
+        }else{
+        }
     }//GEN-LAST:event_BtnExcluirActionPerformed
 
     private void TxtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNomeActionPerformed
@@ -406,5 +425,8 @@ public class DlgCadMateria extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JMenuItem menuEditar;
+    private javax.swing.JMenuItem menuExcluir;
+    private javax.swing.JPopupMenu popupTabela;
     // End of variables declaration//GEN-END:variables
 }
