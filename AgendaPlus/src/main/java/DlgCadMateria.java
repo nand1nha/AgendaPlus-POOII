@@ -16,6 +16,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DlgCadMateria extends javax.swing.JDialog {
     
+    private TableModelMateria tblModelMateria;
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DlgCadMateria.class.getName());
 
     /**
@@ -24,6 +26,7 @@ public class DlgCadMateria extends javax.swing.JDialog {
     public DlgCadMateria(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
         
         BtnAddMateria.setEnabled(false);
         
@@ -44,6 +47,9 @@ public class DlgCadMateria extends javax.swing.JDialog {
             }
             
         });
+        
+        tblModelMateria = new TableModelMateria();
+        TabMateria.setModel(tblModelMateria);
     }
    
 
@@ -324,14 +330,20 @@ public class DlgCadMateria extends javax.swing.JDialog {
 
     private void adicionarTabela(String nome, String descricao, String dificuldade){
         
-        int linha = TabMateria.getRowCount();
-        int col = 0;
+        Materia materia = new Materia(nome, descricao, dificuldade);
+        tblModelMateria.adicionar(materia);
         
-        //CRIAR linha nova
-        ((DefaultTableModel) TabMateria.getModel()).addRow( new Object[3]);
-        TabMateria.setValueAt(nome, linha, col++);
-        TabMateria.setValueAt(descricao, linha, col++);
-        TabMateria.setValueAt(dificuldade, linha, col++);
+        
+//        int linha = TabMateria.getRowCount();
+//        int col = 0;
+//        
+//        //CRIAR linha nova
+//        ((DefaultTableModel) TabMateria.getModel()).addRow( new Object[3]);
+//        TabMateria.setValueAt(nome, linha, col++);
+//        TabMateria.setValueAt(descricao, linha, col++);
+//        TabMateria.setValueAt(dificuldade, linha, col++);
+
+        
     }
     
     private void verificarCamposObrigatorios(){

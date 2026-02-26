@@ -62,9 +62,14 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu3">
+        <Menu class="javax.swing.JMenu" name="mbRevisoes">
           <Properties>
             <Property name="text" type="java.lang.String" value="Revis&#xf5;es"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="mbAjuda">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ajuda"/>
           </Properties>
         </Menu>
       </SubComponents>

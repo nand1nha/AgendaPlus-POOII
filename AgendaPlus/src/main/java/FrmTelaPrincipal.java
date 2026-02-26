@@ -47,7 +47,8 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         RegSessao = new javax.swing.JMenuItem();
         Desempenho = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        mbRevisoes = new javax.swing.JMenu();
+        mbAjuda = new javax.swing.JMenu();
 
         jButton1.setText("Sair");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -217,8 +218,11 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Revisões");
-        jMenuBar1.add(jMenu3);
+        mbRevisoes.setText("Revisões");
+        jMenuBar1.add(mbRevisoes);
+
+        mbAjuda.setText("Ajuda");
+        jMenuBar1.add(mbAjuda);
 
         setJMenuBar(jMenuBar1);
 
@@ -330,12 +334,13 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JMenu mbAjuda;
+    private javax.swing.JMenu mbRevisoes;
     // End of variables declaration//GEN-END:variables
 }
