@@ -36,7 +36,7 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         BtnRegSessao = new javax.swing.JButton();
-        BtnRegDesempenho = new javax.swing.JButton();
+        BtnVerDesempenho = new javax.swing.JButton();
         BtnVerRevisao = new javax.swing.JButton();
         BtnCadMateria = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -46,7 +46,7 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         RegSessao = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        Desempenho = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
         jButton1.setText("Sair");
@@ -130,10 +130,10 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        BtnRegDesempenho.setText("Desempenho");
-        BtnRegDesempenho.addActionListener(new java.awt.event.ActionListener() {
+        BtnVerDesempenho.setText("Ver Desempenho");
+        BtnVerDesempenho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnRegDesempenhoActionPerformed(evt);
+                BtnVerDesempenhoActionPerformed(evt);
             }
         });
 
@@ -161,7 +161,7 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(BtnRegSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(BtnRegDesempenho, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnVerDesempenho, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BtnVerRevisao, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -173,7 +173,7 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnRegSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnCadMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnRegDesempenho, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnVerDesempenho, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnVerRevisao, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
@@ -207,8 +207,13 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
 
         jMenu2.add(jMenu4);
 
-        jMenuItem1.setText("Desempenho");
-        jMenu2.add(jMenuItem1);
+        Desempenho.setText("Desempenho");
+        Desempenho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DesempenhoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(Desempenho);
 
         jMenuBar1.add(jMenu2);
 
@@ -262,11 +267,11 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         jsessaoEstudo.setVisible(true);
     }//GEN-LAST:event_BtnRegSessaoActionPerformed
 
-    private void BtnRegDesempenhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegDesempenhoActionPerformed
+    private void BtnVerDesempenhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerDesempenhoActionPerformed
         // TODO add your handling code here:
-        DlgRegDesempenho jdesempenho = new DlgRegDesempenho(this,true);
+        FrmDesempenho jdesempenho = new FrmDesempenho();
         jdesempenho.setVisible(true);
-    }//GEN-LAST:event_BtnRegDesempenhoActionPerformed
+    }//GEN-LAST:event_BtnVerDesempenhoActionPerformed
 
     private void BtnCadMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadMateriaActionPerformed
         // TODO add your handling code here:
@@ -277,6 +282,13 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
     private void BtnVerRevisaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerRevisaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnVerRevisaoActionPerformed
+
+    private void DesempenhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DesempenhoActionPerformed
+        // TODO add your handling code here:
+        FrmDesempenho jdesempenho = new FrmDesempenho();
+        jdesempenho.setVisible(true);
+        
+    }//GEN-LAST:event_DesempenhoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -305,10 +317,11 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCadMateria;
-    private javax.swing.JButton BtnRegDesempenho;
     private javax.swing.JButton BtnRegSessao;
+    private javax.swing.JButton BtnVerDesempenho;
     private javax.swing.JButton BtnVerRevisao;
     private javax.swing.JMenuItem CadMateria;
+    private javax.swing.JMenuItem Desempenho;
     private javax.swing.JMenuItem RegSessao;
     private javax.swing.JMenuItem Sair;
     private javax.swing.JButton jButton1;
@@ -320,7 +333,6 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

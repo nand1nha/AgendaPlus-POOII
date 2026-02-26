@@ -52,10 +52,13 @@
                 </MenuItem>
               </SubComponents>
             </Menu>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="Desempenho">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Desempenho"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DesempenhoActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -224,7 +227,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="BtnRegSessao" min="-2" pref="145" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="BtnRegDesempenho" min="-2" pref="145" max="-2" attributes="0"/>
+                  <Component id="BtnVerDesempenho" min="-2" pref="145" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="BtnVerRevisao" min="-2" pref="145" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
@@ -238,7 +241,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="BtnRegSessao" alignment="3" min="-2" pref="99" max="-2" attributes="0"/>
                       <Component id="BtnCadMateria" alignment="3" min="-2" pref="99" max="-2" attributes="0"/>
-                      <Component id="BtnRegDesempenho" alignment="3" min="-2" pref="99" max="-2" attributes="0"/>
+                      <Component id="BtnVerDesempenho" alignment="3" min="-2" pref="99" max="-2" attributes="0"/>
                       <Component id="BtnVerRevisao" alignment="3" min="-2" pref="99" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="53" max="32767" attributes="0"/>
@@ -255,12 +258,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnRegSessaoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="BtnRegDesempenho">
+        <Component class="javax.swing.JButton" name="BtnVerDesempenho">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Desempenho"/>
+            <Property name="text" type="java.lang.String" value="Ver Desempenho"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnRegDesempenhoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnVerDesempenhoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="BtnVerRevisao">
