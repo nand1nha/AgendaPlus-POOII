@@ -1,6 +1,7 @@
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
@@ -300,8 +301,12 @@ public class DlgCadMateria extends javax.swing.JDialog {
     private void BtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcluirActionPerformed
         int linha = TabMateria.getSelectedRow();
         if(linha >=0){
-            tblModelMateria.remover(linha);
+            if(JOptionPane.showConfirmDialog(rootPane,"Dseja realmente excluir?","Confirmar exclusão", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                tblModelMateria.remover(linha);
+            }
+            
         }else{
+            JOptionPane.showMessageDialog(this, "Selecione uma linha da tabela", "Exclusão de materia", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_BtnExcluirActionPerformed
 

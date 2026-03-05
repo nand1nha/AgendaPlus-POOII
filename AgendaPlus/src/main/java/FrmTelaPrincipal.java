@@ -58,6 +58,7 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Agenda Inteligente de Estudo");
@@ -219,6 +220,11 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         mbRevisoes.setText("Revisões");
+        mbRevisoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbRevisoesActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(mbRevisoes);
 
         mbAjuda.setText("Ajuda");
@@ -285,6 +291,8 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
 
     private void BtnVerRevisaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerRevisaoActionPerformed
         // TODO add your handling code here:
+        FrmRevisao jrevisao = new FrmRevisao();
+        jrevisao.setVisible(true);
     }//GEN-LAST:event_BtnVerRevisaoActionPerformed
 
     private void DesempenhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DesempenhoActionPerformed
@@ -293,6 +301,12 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         jdesempenho.setVisible(true);
         
     }//GEN-LAST:event_DesempenhoActionPerformed
+
+    private void mbRevisoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbRevisoesActionPerformed
+        // TODO add your handling code here:
+        FrmRevisao jrevisao = new FrmRevisao();
+        jrevisao.setVisible(true);
+    }//GEN-LAST:event_mbRevisoesActionPerformed
 
     /**
      * @param args the command line arguments
