@@ -78,7 +78,7 @@ public class DlgCadMateria extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         BtnEditar = new javax.swing.JButton();
         BtnExcluir = new javax.swing.JButton();
-        BtnCancelar = new javax.swing.JButton();
+        BtnVoltar = new javax.swing.JButton();
         BtnSalvar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         TabMateria = new javax.swing.JTable();
@@ -128,6 +128,7 @@ public class DlgCadMateria extends javax.swing.JDialog {
             }
         });
 
+        BtnAddMateria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/png/16x16/add.png"))); // NOI18N
         BtnAddMateria.setText("Adicionar");
         BtnAddMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,6 +184,7 @@ public class DlgCadMateria extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        BtnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/png/16x16/window_edit.png"))); // NOI18N
         BtnEditar.setText("Editar");
         BtnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,6 +192,7 @@ public class DlgCadMateria extends javax.swing.JDialog {
             }
         });
 
+        BtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/png/16x16/remove.png"))); // NOI18N
         BtnExcluir.setText("Excluir");
         BtnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,13 +200,15 @@ public class DlgCadMateria extends javax.swing.JDialog {
             }
         });
 
-        BtnCancelar.setText("Cancelar");
-        BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+        BtnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/png/16x16/back.png"))); // NOI18N
+        BtnVoltar.setText("Voltar");
+        BtnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCancelarActionPerformed(evt);
+                BtnVoltarActionPerformed(evt);
             }
         });
 
+        BtnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/png/16x16/accept.png"))); // NOI18N
         BtnSalvar.setText("Salvar");
         BtnSalvar.setEnabled(false);
 
@@ -219,7 +224,7 @@ public class DlgCadMateria extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(BtnSalvar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BtnCancelar)
+                .addComponent(BtnVoltar)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -229,7 +234,7 @@ public class DlgCadMateria extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnExcluir)
                     .addComponent(BtnEditar)
-                    .addComponent(BtnCancelar)
+                    .addComponent(BtnVoltar)
                     .addComponent(BtnSalvar))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
@@ -340,9 +345,9 @@ public class DlgCadMateria extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAddMateriaActionPerformed
 
-    private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
+    private void BtnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVoltarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BtnCancelarActionPerformed
+    }//GEN-LAST:event_BtnVoltarActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
 
@@ -415,10 +420,10 @@ public class DlgCadMateria extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAddMateria;
-    private javax.swing.JButton BtnCancelar;
     private javax.swing.JButton BtnEditar;
     private javax.swing.JButton BtnExcluir;
     private javax.swing.JButton BtnSalvar;
+    private javax.swing.JButton BtnVoltar;
     private javax.swing.JComboBox<String> CmbNivelDif;
     private javax.swing.JTable TabMateria;
     private javax.swing.JTextArea TxtDesc;

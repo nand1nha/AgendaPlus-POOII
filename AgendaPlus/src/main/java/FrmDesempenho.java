@@ -80,6 +80,7 @@ public class FrmDesempenho extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/png/16x16/database_down.png"))); // NOI18N
         jButton1.setText("Atualizar");
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
@@ -164,9 +165,11 @@ public class FrmDesempenho extends javax.swing.JFrame {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/png/16x16/down.png"))); // NOI18N
         jButton3.setText("Relatorio");
         jButton3.addActionListener(this::jButton3ActionPerformed);
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/png/16x16/remove.png"))); // NOI18N
         jButton2.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

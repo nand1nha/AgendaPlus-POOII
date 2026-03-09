@@ -182,7 +182,10 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("Cadastro");
 
+        CadMateria.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        CadMateria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/png/16x16/note_add.png"))); // NOI18N
         CadMateria.setText("Cadastrar Matéria");
+        CadMateria.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         CadMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CadMateriaActionPerformed(evt);
@@ -190,6 +193,7 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(CadMateria);
 
+        Sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/png/16x16/remove.png"))); // NOI18N
         Sair.setText("Sair");
         jMenu1.add(Sair);
 
@@ -197,8 +201,11 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
 
         jMenu2.setText("Estudo");
 
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/png/16x16/notes_edit.png"))); // NOI18N
         jMenu4.setText("Registrar");
 
+        RegSessao.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        RegSessao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/png/16x16/page_add.png"))); // NOI18N
         RegSessao.setText("Sessão");
         RegSessao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,6 +216,8 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
 
         jMenu2.add(jMenu4);
 
+        Desempenho.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        Desempenho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/png/16x16/chart.png"))); // NOI18N
         Desempenho.setText("Desempenho");
         Desempenho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
