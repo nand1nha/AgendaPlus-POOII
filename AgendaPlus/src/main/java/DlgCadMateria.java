@@ -84,6 +84,11 @@ public class DlgCadMateria extends javax.swing.JDialog {
         TabMateria = new javax.swing.JTable();
 
         menuEditar.setText("Editar");
+        menuEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuEditarActionPerformed(evt);
+            }
+        });
         popupTabela.add(menuEditar);
 
         menuExcluir.setText("Excluir");
@@ -130,6 +135,7 @@ public class DlgCadMateria extends javax.swing.JDialog {
 
         BtnAddMateria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/png/16x16/add.png"))); // NOI18N
         BtnAddMateria.setText("Adicionar");
+        BtnAddMateria.setEnabled(false);
         BtnAddMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAddMateriaActionPerformed(evt);
@@ -306,7 +312,7 @@ public class DlgCadMateria extends javax.swing.JDialog {
     private void BtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcluirActionPerformed
         int linha = TabMateria.getSelectedRow();
         if(linha >=0){
-            if(JOptionPane.showConfirmDialog(rootPane,"Dseja realmente excluir?","Confirmar exclusão", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+            if(JOptionPane.showConfirmDialog(this,"Dseja realmente excluir?","Confirmar exclusão", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
                 tblModelMateria.remover(linha);
             }
             
@@ -324,7 +330,8 @@ public class DlgCadMateria extends javax.swing.JDialog {
     }//GEN-LAST:event_CmbNivelDifActionPerformed
 
     private void BtnAddMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddMateriaActionPerformed
-
+        
+        // Pegar todos os campos
         String nome = TxtNome.getText();
         String descricao = TxtDesc.getText();
         String dificuldade = CmbNivelDif.getSelectedItem().toString();
@@ -356,6 +363,10 @@ public class DlgCadMateria extends javax.swing.JDialog {
     private void TabMateriaComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_TabMateriaComponentAdded
 
     }//GEN-LAST:event_TabMateriaComponentAdded
+
+    private void menuEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuEditarActionPerformed
 
     private void adicionarTabela(String nome, String descricao, String dificuldade){
         
