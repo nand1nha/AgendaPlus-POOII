@@ -86,7 +86,7 @@ public class DlgCadMateria extends javax.swing.JDialog {
         menuEditar.setText("Editar");
         menuEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuEditarActionPerformed(evt);
+                BtnEditarActionPerformed(evt);
             }
         });
         popupTabela.add(menuEditar);
@@ -306,13 +306,23 @@ public class DlgCadMateria extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditarActionPerformed
-        // TODO add your handling code here:
+        int linha = TabMateria.getSelectedRow();
+        if(linha >=0){
+            if(JOptionPane.showConfirmDialog(this,"Deseja realmente editar?","Confirmar edição", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                TxtNome.setText(TabMateria.getValueAt(linha, 0).toString());
+                TxtDesc.setText(TabMateria.getValueAt(linha, 1).toString());
+                CmbNivelDif.setSelectedItem(TabMateria.getValueAt(linha, 2));
+            }
+            
+        }else{
+            JOptionPane.showMessageDialog(this, "Selecione uma linha da tabela", "Edição de materia", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_BtnEditarActionPerformed
 
     private void BtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcluirActionPerformed
         int linha = TabMateria.getSelectedRow();
         if(linha >=0){
-            if(JOptionPane.showConfirmDialog(this,"Dseja realmente excluir?","Confirmar exclusão", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+            if(JOptionPane.showConfirmDialog(this,"Deseja realmente excluir?","Confirmar exclusão", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
                 tblModelMateria.remover(linha);
             }
             
@@ -364,16 +374,12 @@ public class DlgCadMateria extends javax.swing.JDialog {
 
     }//GEN-LAST:event_TabMateriaComponentAdded
 
-    private void menuEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuEditarActionPerformed
-
     private void adicionarTabela(String nome, String descricao, String dificuldade){
         
         Materia materia = new Materia(nome, descricao, dificuldade);
         tblModelMateria.adicionar(materia);
         
-        
+       
 //        int linha = TabMateria.getRowCount();
 //        int col = 0;
 //        

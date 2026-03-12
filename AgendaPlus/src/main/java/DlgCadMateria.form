@@ -13,7 +13,7 @@
             <Property name="text" type="java.lang.String" value="Editar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuEditarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnEditarActionPerformed"/>
           </Events>
         </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="menuExcluir">
