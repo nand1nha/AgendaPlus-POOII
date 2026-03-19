@@ -1,4 +1,8 @@
+package viewer;
 
+
+import controller.TableModelMateria;
+import domain.Materia;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
