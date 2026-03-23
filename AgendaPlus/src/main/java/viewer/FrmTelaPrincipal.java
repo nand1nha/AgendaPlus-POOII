@@ -269,16 +269,12 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CadMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadMateriaActionPerformed
-
-        
-        DlgCadMateria jcadMateria = new DlgCadMateria(this, true);
-        jcadMateria.setVisible(true);
+        GerInterGrafica.getMyInstace().abrirCadMateria();
     }//GEN-LAST:event_CadMateriaActionPerformed
 
     private void RegSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegSessaoActionPerformed
         // TODO add your handling code here:
-        DlgSessaoEstudo jsessaoEstudo = new DlgSessaoEstudo(this, true);
-        jsessaoEstudo.setVisible(true);
+        GerInterGrafica.getMyInstace().abrirSessaoEstudo();
     }//GEN-LAST:event_RegSessaoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -287,39 +283,32 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
 
     private void BtnRegSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegSessaoActionPerformed
         // TODO add your handling code here:
-        DlgSessaoEstudo jsessaoEstudo = new DlgSessaoEstudo(this, true);
-        jsessaoEstudo.setVisible(true);
+        GerInterGrafica.getMyInstace().abrirSessaoEstudo();
     }//GEN-LAST:event_BtnRegSessaoActionPerformed
 
     private void BtnVerDesempenhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerDesempenhoActionPerformed
         // TODO add your handling code here:
-        FrmDesempenho jdesempenho = new FrmDesempenho();
-        jdesempenho.setVisible(true);
+        GerInterGrafica.getMyInstace().abrirDesempenho();
     }//GEN-LAST:event_BtnVerDesempenhoActionPerformed
 
     private void BtnCadMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadMateriaActionPerformed
         // TODO add your handling code here:
-        DlgCadMateria jcadMateria = new DlgCadMateria(this, true);
-        jcadMateria.setVisible(true);
+        GerInterGrafica.getMyInstace().abrirCadMateria();
     }//GEN-LAST:event_BtnCadMateriaActionPerformed
 
     private void BtnVerRevisaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerRevisaoActionPerformed
         // TODO add your handling code here:
-        FrmRevisao jrevisao = new FrmRevisao();
-        jrevisao.setVisible(true);
+        GerInterGrafica.getMyInstace().abrirRevisao();
     }//GEN-LAST:event_BtnVerRevisaoActionPerformed
 
     private void DesempenhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DesempenhoActionPerformed
         // TODO add your handling code here:
-        FrmDesempenho jdesempenho = new FrmDesempenho();
-        jdesempenho.setVisible(true);
-        
+        GerInterGrafica.getMyInstace().abrirDesempenho();
     }//GEN-LAST:event_DesempenhoActionPerformed
 
     private void mbRevisoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbRevisoesActionPerformed
         // TODO add your handling code here:
-        FrmRevisao jrevisao = new FrmRevisao();
-        jrevisao.setVisible(true);
+        GerInterGrafica.getMyInstace().abrirRevisao();
     }//GEN-LAST:event_mbRevisoesActionPerformed
 
     

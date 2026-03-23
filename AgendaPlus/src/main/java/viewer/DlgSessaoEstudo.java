@@ -64,7 +64,7 @@ public class DlgSessaoEstudo extends javax.swing.JDialog {
 
         jLabel8.setText("Acertos:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Matemática", "História", "Geografia", "Quimica" }));
 
         try {
             jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -77,7 +77,11 @@ public class DlgSessaoEstudo extends javax.swing.JDialog {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField4.setText("0");
+        jFormattedTextField4.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jFormattedTextField4FocusLost(evt);
+            }
+        });
         jFormattedTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFormattedTextField4ActionPerformed(evt);
@@ -100,7 +104,6 @@ public class DlgSessaoEstudo extends javax.swing.JDialog {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField6.setText("0");
         jFormattedTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFormattedTextField6ActionPerformed(evt);
@@ -254,10 +257,6 @@ public class DlgSessaoEstudo extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jFormattedTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField4ActionPerformed
-
     private void jFormattedTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField6ActionPerformed
@@ -265,6 +264,15 @@ public class DlgSessaoEstudo extends javax.swing.JDialog {
     private void jFormattedTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField7ActionPerformed
+
+    private void jFormattedTextField4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFormattedTextField4FocusLost
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jFormattedTextField4FocusLost
+
+    private void jFormattedTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField4ActionPerformed
+
+    }//GEN-LAST:event_jFormattedTextField4ActionPerformed
 
     /**
      * @param args the command line arguments
