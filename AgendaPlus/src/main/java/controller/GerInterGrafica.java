@@ -6,6 +6,7 @@ package controller;
 
 import java.awt.Frame;
 import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -30,9 +31,17 @@ public class GerInterGrafica {
     private DlgSessaoEstudo janSessaoEstudo;
     private FrmDesempenho janDesempenho;
     private FrmRevisao janRevisao;
+    
+    private GerenciadorDominio gerDominio;
+    
 
     private GerInterGrafica() {
-        
+        try {
+            gerDominio = new GerenciadorDominio();
+        } catch (ClassNotFoundException | SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex,  "Inicialização", JOptionPane.ERROR_MESSAGE);
+            System.exit(-1);
+        }
     }
 
     public static GerInterGrafica getMyInstace() {
@@ -56,7 +65,7 @@ public class GerInterGrafica {
     private JFrame abrirJanelaFrm(java.awt.Frame parent, JFrame frm, Class classe) {
         if (frm == null){     
             try {
-                frm = (JFrame) classe.getConstructor().newInstance(parent,true);                                
+                frm = (JFrame) classe.getConstructor().newInstance();                                
             } catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
                 JOptionPane.showMessageDialog(parent, "Erro ao abrir a janela " + classe.getName() + ". " + ex.getMessage() );
             } 
@@ -81,11 +90,11 @@ public class GerInterGrafica {
     }
     
     public void abrirDesempenho(){
-        abrirJanelaFrm(princ,janDesempenho,FrmDesempenho.class);
+        abrirJanelaFrm(princ,janDesempenho,FrmDesempenho.class).setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
     public void abrirRevisao(){
-        abrirJanelaFrm(princ,janRevisao,FrmRevisao.class);
+        abrirJanelaFrm(princ,janRevisao,FrmRevisao.class).setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
     

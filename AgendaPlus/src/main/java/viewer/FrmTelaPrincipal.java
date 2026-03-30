@@ -1,6 +1,7 @@
 package viewer;
 
 import controller.GerInterGrafica;
+import javax.swing.JFrame;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
