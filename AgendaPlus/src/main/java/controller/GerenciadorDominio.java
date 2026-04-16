@@ -5,15 +5,26 @@
 package controller;
 
 import dao.ConexaoPostgres;
+import dao.MateriaDAO;
+import domain.Materia;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
  * @author 2024222760026
  */
 public class GerenciadorDominio {
+    
+    private MateriaDAO matDAO;
+    
     public GerenciadorDominio() throws ClassNotFoundException, SQLException {
         //TESTE
         ConexaoPostgres.obterConexsao();
+        matDAO = new MateriaDAO(); 
+    }
+    
+    public List<Materia> listarMateria() throws ClassNotFoundException, SQLException{
+        return matDAO.listar();
     }
 }

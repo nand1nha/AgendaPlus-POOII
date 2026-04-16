@@ -1,5 +1,7 @@
 package viewer;
 
+import controller.GerInterGrafica;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
@@ -53,6 +55,11 @@ public class DlgSessaoEstudo extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registrar Sessão de Estudo");
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Sessão de Estudo"));
 
@@ -64,7 +71,11 @@ public class DlgSessaoEstudo extends javax.swing.JDialog {
 
         jLabel8.setText("Acertos:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Matemática", "História", "Geografia", "Quimica" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         try {
             txtData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -97,7 +108,6 @@ public class DlgSessaoEstudo extends javax.swing.JDialog {
 
         txtPorcentagem.setEditable(false);
         txtPorcentagem.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
-        txtPorcentagem.setText("");
         txtPorcentagem.setEnabled(false);
         txtPorcentagem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -269,6 +279,15 @@ public class DlgSessaoEstudo extends javax.swing.JDialog {
         txtPorcentagem.setEnabled(true);
         txtPorcentagem.setText((porcentagem + "%"));
     }//GEN-LAST:event_txtAcertosFocusLost
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        
+        GerInterGrafica.getMyInstace().carregarComboMateria(jComboBox2);
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments

@@ -21,6 +21,19 @@ public class Materia {
         this.dificuldade = dificuldade;
     }
 
+    public Materia(int idMateria, String nome, String descricao, String dificuldade) {
+        this.idMateria = idMateria;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.dificuldade = dificuldade;
+    }
+
+    public Materia(int idMateria, String nome, String dificuldade) {
+        this.idMateria = idMateria;
+        this.nome = nome;
+        this.dificuldade = dificuldade;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -44,5 +57,11 @@ public class Materia {
     public void setDificuldade(String dificuldade) {
         this.dificuldade = dificuldade;
     }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
+    
     
 }

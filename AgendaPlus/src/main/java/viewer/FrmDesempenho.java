@@ -1,5 +1,6 @@
 package viewer;
 
+import controller.GerInterGrafica;
 import javax.swing.JFrame;
 
 /*
@@ -52,6 +53,11 @@ public class FrmDesempenho extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Desempenho por Matéria");
         setResizable(false);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -83,8 +89,6 @@ public class FrmDesempenho extends javax.swing.JFrame {
         );
 
         jLabel1.setText("Filtrar por materia:");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/png/16x16/database_down.png"))); // NOI18N
         jButton1.setText("Atualizar");
@@ -231,6 +235,11 @@ public class FrmDesempenho extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        
+        GerInterGrafica.getMyInstace().carregarComboMateria(jComboBox1);
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments

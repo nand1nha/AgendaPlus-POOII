@@ -5,6 +5,10 @@
 package dao;
 
 import domain.Materia;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +17,20 @@ import java.util.List;
  */
 public class MateriaDAO {
     
-    public List<Materia> listar(){
+    public List<Materia> listar() throws ClassNotFoundException, SQLException{
+        Statement stmnt;
+        stmnt = ConexaoPostgres.obterConexsao().createStatement();
+        List<Materia> lista = new ArrayList();
+        Materia mat;
         
+        String sql = "SELECT * FROM materia";
+        ResultSet res = stmnt.executeQuery(sql);
+        
+        while(res.next()){
+            mat = new Materia(res.getInt("id"), res.getString("nome"), res.getString("descricao"), res.getString("nivel_dificuldade"));
+            lista.add(mat);
+        }
+        
+        return lista;
     }
 }
