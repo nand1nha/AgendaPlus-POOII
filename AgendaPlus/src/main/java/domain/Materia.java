@@ -10,6 +10,7 @@ package domain;
  * @author 2024222760026
  */
 public class Materia {
+    private int idMateria;
     private String nome;
     private String descricao;
     private String dificuldade;
