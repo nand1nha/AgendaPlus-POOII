@@ -86,11 +86,11 @@ public class GerInterGrafica {
     }
     
     public void abrirCadMateria(){
-        abrirJanela(princ,janCadMateria,DlgCadMateria.class);
+        janCadMateria = (DlgCadMateria) abrirJanela(princ,janCadMateria,DlgCadMateria.class);
     }
     
     public void abrirSessaoEstudo(){
-        abrirJanela(princ,janSessaoEstudo,DlgSessaoEstudo.class);
+        janSessaoEstudo  = (DlgSessaoEstudo) abrirJanela(princ,janSessaoEstudo,DlgSessaoEstudo.class);
     }
     
     public void abrirDesempenho(){
