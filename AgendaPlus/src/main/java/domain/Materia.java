@@ -62,6 +62,14 @@ public class Materia {
     public String toString() {
         return nome;
     }
+
+    public int getIdMateria() {
+        return idMateria;
+    }
+
+    public void setIdMateria(int idMateria) {
+        this.idMateria = idMateria;
+    }
     
     
 }

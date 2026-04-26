@@ -5,6 +5,7 @@
 package dao;
 
 import domain.Materia;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,6 +17,24 @@ import java.util.List;
  * @author fsmar
  */
 public class MateriaDAO {
+    
+    public void inserir(Materia mat) throws ClassNotFoundException, SQLException{
+        
+        String sql = "INSERT INTO materia (id,nome,descricao,nivel_dificuldade)  VALUES ( ?,?,?,? )";
+        
+        PreparedStatement pstmnt = ConexaoPostgres.obterConexsao().prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
+        pstmnt.setString(1,mat.getDescricao());
+        
+        pstmnt.execute();
+        
+        ResultSet res = pstmnt.getGeneratedKeys();
+        while(res.next()){
+            int id = res.getInt(1);
+            mat.setIdMateria(id);
+        }
+        
+    }
+
     
     public List<Materia> listar() throws ClassNotFoundException, SQLException{
         Statement stmnt;
