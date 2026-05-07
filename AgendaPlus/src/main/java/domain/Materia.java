@@ -12,6 +12,7 @@ import jakarta.persistence.*;
  * @author 2024222760026
  */
 @Entity
+@Table(name = "materia")
 public class Materia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

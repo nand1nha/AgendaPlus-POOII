@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dao.ConexaoHibernate;
 import dao.ConexaoPostgres;
 import dao.MateriaDAO;
 import domain.Materia;
@@ -20,7 +21,8 @@ public class GerenciadorDominio {
     
     public GerenciadorDominio() throws ClassNotFoundException, SQLException {
         //TESTE
-        ConexaoPostgres.obterConexsao();
+        ConexaoHibernate.getSessionFactory().openSession();
+        
         matDAO = new MateriaDAO(); 
     }
     
