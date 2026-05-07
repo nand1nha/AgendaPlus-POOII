@@ -1,5 +1,6 @@
 package domain;
 
+import jakarta.persistence.*;
 import java.util.Date;
 
 /*
@@ -11,13 +12,32 @@ import java.util.Date;
  *
  * @author fsmar
  */
+@Entity
 public class Revisao {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRevisao;
-    private SessaoEstudo sessao;
+    
+    @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date dataRevisao;
-    private String status;
+    
+    @Enumerated(EnumType.STRING)
+    private TipoStatus status;
+    
+    private SessaoEstudo sessao;
 
-    public Revisao(SessaoEstudo sessao, Date dataRevisao, String status) {
+    public Revisao() {
+    }
+
+    public Revisao(int idRevisao, Date dataRevisao, TipoStatus status, SessaoEstudo sessao) {
+        this.idRevisao = idRevisao;
+        this.dataRevisao = dataRevisao;
+        this.status = status;
+        this.sessao = sessao;
+    }
+
+    public Revisao(SessaoEstudo sessao, Date dataRevisao, TipoStatus status) {
         this.sessao = sessao;
         this.dataRevisao = dataRevisao;
         this.status = status;
@@ -25,6 +45,14 @@ public class Revisao {
 
     public SessaoEstudo getSessao() {
         return sessao;
+    }
+
+    public int getIdRevisao() {
+        return idRevisao;
+    }
+
+    public void setIdRevisao(int idRevisao) {
+        this.idRevisao = idRevisao;
     }
 
     public void setSessao(SessaoEstudo sessao) {
@@ -39,11 +67,11 @@ public class Revisao {
         this.dataRevisao = dataRevisao;
     }
 
-    public String getStatus() {
+    public TipoStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(TipoStatus status) {
         this.status = status;
     }
     

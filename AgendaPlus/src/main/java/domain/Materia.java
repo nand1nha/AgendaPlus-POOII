@@ -1,5 +1,7 @@
 package domain;
 
+import jakarta.persistence.*;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -9,29 +11,65 @@ package domain;
  *
  * @author 2024222760026
  */
+@Entity
 public class Materia {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idMateria;
+    
+    @Column(unique = true, nullable = false)
     private String nome;
+    
+    @Column
     private String descricao;
-    private String dificuldade;
+    
+    @Enumerated(EnumType.STRING)
+    private TipoNivelDificuldade dificuldade;
+    
+    @Transient
+    private Desempenho desepenho;
 
-    public Materia(String nome, String descricao, String dificuldade) {
+    public Materia() {
+    }
+
+    public Materia(int idMateria, String nome, String descricao, TipoNivelDificuldade dificuldade, Desempenho desepenho) {
+        this.idMateria = idMateria;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.dificuldade = dificuldade;
+        this.desepenho = desepenho;
+    }
+
+    public Materia(String nome, String descricao, TipoNivelDificuldade dificuldade) {
         this.nome = nome;
         this.descricao = descricao;
         this.dificuldade = dificuldade;
     }
 
-    public Materia(int idMateria, String nome, String descricao, String dificuldade) {
+    public Materia(String nome, TipoNivelDificuldade dificuldade) {
+        this.nome = nome;
+        this.dificuldade = dificuldade;
+    }
+    
+    public Materia(int idMateria, String nome, String descricao, TipoNivelDificuldade dificuldade) {
         this.idMateria = idMateria;
         this.nome = nome;
         this.descricao = descricao;
         this.dificuldade = dificuldade;
     }
 
-    public Materia(int idMateria, String nome, String dificuldade) {
+    public Materia(int idMateria, String nome, TipoNivelDificuldade dificuldade) {
         this.idMateria = idMateria;
         this.nome = nome;
         this.dificuldade = dificuldade;
+    }
+
+    public Desempenho getDesepenho() {
+        return desepenho;
+    }
+
+    public void setDesepenho(Desempenho desepenho) {
+        this.desepenho = desepenho;
     }
 
     public String getNome() {
@@ -50,11 +88,11 @@ public class Materia {
         this.descricao = descricao;
     }
 
-    public String getDificuldade() {
+    public TipoNivelDificuldade getDificuldade() {
         return dificuldade;
     }
 
-    public void setDificuldade(String dificuldade) {
+    public void setDificuldade(TipoNivelDificuldade dificuldade) {
         this.dificuldade = dificuldade;
     }
 

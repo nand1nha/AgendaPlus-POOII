@@ -5,6 +5,7 @@
 package dao;
 
 import domain.Materia;
+import domain.TipoNivelDificuldade;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -46,7 +47,7 @@ public class MateriaDAO {
         ResultSet res = stmnt.executeQuery(sql);
         
         while(res.next()){
-            mat = new Materia(res.getInt("id"), res.getString("nome"), res.getString("descricao"), res.getString("nivel_dificuldade"));
+            mat = new Materia(res.getInt("id"), res.getString("nome"), res.getString("descricao"), TipoNivelDificuldade.valueOf(res.getString("dificuldade")));
             lista.add(mat);
         }
         

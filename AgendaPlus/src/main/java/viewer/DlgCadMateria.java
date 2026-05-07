@@ -3,6 +3,7 @@ package viewer;
 
 import controller.TableModelMateria;
 import domain.Materia;
+import domain.TipoNivelDificuldade;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -348,7 +349,7 @@ public class DlgCadMateria extends javax.swing.JDialog {
         // Pegar todos os campos
         String nome = TxtNome.getText();
         String descricao = TxtDesc.getText();
-        String dificuldade = CmbNivelDif.getSelectedItem().toString();
+        TipoNivelDificuldade dificuldade =  (TipoNivelDificuldade) CmbNivelDif.getSelectedItem();
         
         
         adicionarTabela(nome, descricao, dificuldade);
@@ -378,7 +379,7 @@ public class DlgCadMateria extends javax.swing.JDialog {
 
     }//GEN-LAST:event_TabMateriaComponentAdded
 
-    private void adicionarTabela(String nome, String descricao, String dificuldade){
+    private void adicionarTabela(String nome, String descricao, TipoNivelDificuldade dificuldade){
         
         Materia materia = new Materia(nome, descricao, dificuldade);
         tblModelMateria.adicionar(materia);
