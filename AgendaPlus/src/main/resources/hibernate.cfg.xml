@@ -16,6 +16,8 @@
     <property name="hibernate.hbm2ddl.auto">create</property>
     
     <mapping class="domain.Materia"></mapping>
+    <mapping class="domain.SessaoEstudo"></mapping>
+    <mapping class="domain.Revisao"></mapping>
             
        
 

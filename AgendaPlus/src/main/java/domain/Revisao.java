@@ -14,8 +14,8 @@ import java.util.Date;
  */
 @Entity
 public class Revisao {
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRevisao;
     
     @Column(nullable = false)
@@ -25,26 +25,40 @@ public class Revisao {
     @Enumerated(EnumType.STRING)
     private TipoStatus status;
     
-    private SessaoEstudo sessao;
+    @OneToOne
+    @MapsId
+    @JoinColumn (name = "idRevisao")
+    private SessaoEstudo sessaoEstudo;
 
     public Revisao() {
     }
 
-    public Revisao(int idRevisao, Date dataRevisao, TipoStatus status, SessaoEstudo sessao) {
+    public Revisao(int idRevisao, Date dataRevisao, TipoStatus status, SessaoEstudo sessaoEstudo) {
         this.idRevisao = idRevisao;
         this.dataRevisao = dataRevisao;
         this.status = status;
-        this.sessao = sessao;
+        this.sessaoEstudo = sessaoEstudo;
     }
 
-    public Revisao(SessaoEstudo sessao, Date dataRevisao, TipoStatus status) {
-        this.sessao = sessao;
+    public Revisao(SessaoEstudo sessaoEstudo, Date dataRevisao, TipoStatus status) {
+        this.sessaoEstudo = sessaoEstudo;
         this.dataRevisao = dataRevisao;
         this.status = status;
     }
 
-    public SessaoEstudo getSessao() {
-        return sessao;
+    public Revisao(int idRevisao, Date dataRevisao, TipoStatus status) {
+        this.idRevisao = idRevisao;
+        this.dataRevisao = dataRevisao;
+        this.status = status;
+    }
+
+    public Revisao(Date dataRevisao, TipoStatus status) {
+        this.dataRevisao = dataRevisao;
+        this.status = status;
+    }
+
+    public SessaoEstudo getSessaoEstudo() {
+        return sessaoEstudo;
     }
 
     public int getIdRevisao() {
@@ -55,8 +69,8 @@ public class Revisao {
         this.idRevisao = idRevisao;
     }
 
-    public void setSessao(SessaoEstudo sessao) {
-        this.sessao = sessao;
+    public void setSessaoEstudo(SessaoEstudo sessaoEstudo) {
+        this.sessaoEstudo = sessaoEstudo;
     }
 
     public Date getDataRevisao() {

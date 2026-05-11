@@ -1,6 +1,7 @@
 package domain;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -29,6 +30,9 @@ public class Materia {
     
     @Transient
     private Desempenho desepenho;
+    
+    @OneToMany(mappedBy = "materia")
+    private List<SessaoEstudo> sessaoEstudo;
 
     public Materia() {
     }
@@ -63,6 +67,23 @@ public class Materia {
         this.idMateria = idMateria;
         this.nome = nome;
         this.dificuldade = dificuldade;
+    }
+
+    public Materia(int idMateria, String nome, String descricao, TipoNivelDificuldade dificuldade, Desempenho desepenho, List<SessaoEstudo> sessaoEstudo) {
+        this.idMateria = idMateria;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.dificuldade = dificuldade;
+        this.desepenho = desepenho;
+        this.sessaoEstudo = sessaoEstudo;
+    }
+
+    public Materia(String nome, String descricao, TipoNivelDificuldade dificuldade, Desempenho desepenho, List<SessaoEstudo> sessaoEstudo) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.dificuldade = dificuldade;
+        this.desepenho = desepenho;
+        this.sessaoEstudo = sessaoEstudo;
     }
 
     public Desempenho getDesepenho() {

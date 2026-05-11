@@ -30,18 +30,35 @@ public class SessaoEstudo {
     @Column
     private String observacao;
     
+    @ManyToOne
+    @JoinColumn(name = "idMateria")
     private Materia materia;
+    
+    @OneToOne (mappedBy = "sessaoEstudo")
+    private Revisao revisao;
     
     
     public SessaoEstudo() {
     }
-    
-    public SessaoEstudo(Materia materia, Date dataEstudo, int totalQuestoes, int acertos, String observacao) {
-        this.materia = materia;
+
+    public SessaoEstudo(Date dataEstudo, int totalQuestoes, int acertos, String observacao, Materia materia, Revisao revisao) {
         this.dataEstudo = dataEstudo;
         this.totalQuestoes = totalQuestoes;
         this.acertos = acertos;
         this.observacao = observacao;
+        this.materia = materia;
+        this.revisao = revisao;
+    }
+    
+
+    public SessaoEstudo(int idSessaoEstudo, Date dataEstudo, int totalQuestoes, int acertos, String observacao, Materia materia, Revisao revisao) {
+        this.idSessaoEstudo = idSessaoEstudo;
+        this.dataEstudo = dataEstudo;
+        this.totalQuestoes = totalQuestoes;
+        this.acertos = acertos;
+        this.observacao = observacao;
+        this.materia = materia;
+        this.revisao = revisao;
     }
 
     public SessaoEstudo(int idSessaoEstudo, Date dataEstudo, int totalQuestoes, int acertos, String observacao, Materia materia) {
@@ -53,6 +70,18 @@ public class SessaoEstudo {
         this.materia = materia;
     }
 
+    public SessaoEstudo(Date dataEstudo, int totalQuestoes, int acertos, String observacao, Materia materia) {
+        this.dataEstudo = dataEstudo;
+        this.totalQuestoes = totalQuestoes;
+        this.acertos = acertos;
+        this.observacao = observacao;
+        this.materia = materia;
+    }
+    
+    
+
+    
+    
     public Materia getMateria() {
         return materia;
     }
