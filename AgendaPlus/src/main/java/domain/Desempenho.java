@@ -5,6 +5,7 @@
 package domain;
 
 import jakarta.persistence.Entity;
+import java.util.Date;
 
 /**
  *
@@ -12,10 +13,17 @@ import jakarta.persistence.Entity;
  */
 
 public class Desempenho {
-    private String mediaAcertos;
-    private int melhorResultado;
-    private int piorResultado;
-    private int percentualEvolucao;
+    
+    private Materia materia;
+
+    private double mediaAcertos;
+
+    private double percentualEvolucao;
+
+    private TipoDesempenho status;
+
+    private Date ultimaSessao;
+    private Date proximaRevisao;
     
     
 }

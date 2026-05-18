@@ -27,7 +27,7 @@ public class SessaoEstudo {
     @Column(nullable = false)
     private int acertos;
     
-    @Column
+    @Column(length = 500)
     private String observacao;
     
     @ManyToOne
@@ -78,10 +78,6 @@ public class SessaoEstudo {
         this.materia = materia;
     }
     
-    
-
-    
-    
     public Materia getMateria() {
         return materia;
     }
@@ -130,5 +126,16 @@ public class SessaoEstudo {
         this.observacao = observacao;
     }
     
-    
+    public int getErros() {
+        return totalQuestoes - acertos;
+    }
+
+    public double getPercentualAcertos() {
+
+        if(totalQuestoes == 0){
+            return 0;
+        }
+
+        return ((double) acertos / totalQuestoes) * 100;
+    }
 }

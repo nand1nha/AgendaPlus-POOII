@@ -22,7 +22,7 @@ public class Materia {
     @Column(unique = true, nullable = false)
     private String nome;
     
-    @Column
+    @Column(length = 500)
     private String descricao;
     
     @Enumerated(EnumType.STRING)

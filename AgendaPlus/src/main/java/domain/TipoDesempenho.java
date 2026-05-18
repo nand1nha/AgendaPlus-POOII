@@ -6,16 +6,17 @@ package domain;
 
 /**
  *
- * @author fsmar
+ * @author 2024222760026
  */
-public enum TipoStatus {
-    REALIZADA("Realizada"),
-    PENDENTE("Pendente"),
-    EM_ANDAMENTO("Em andamento");
+public enum TipoDesempenho {
+    EXCELENTE("Excelente"),
+    BOM("Bom"),
+    REGULAR("Regular"),
+    PRECISA_REVISAR("Precisa Revisar");
     
     private final String descricao;
     
-    TipoStatus(String descricao) {
+    TipoDesempenho(String descricao) {
         this.descricao = descricao;
     }
 
