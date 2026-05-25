@@ -28,7 +28,7 @@ public class Revisao {
     @Column(length = 500)
     private String observacao;
     
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @MapsId
     @JoinColumn (name = "idRevisao")
     private SessaoEstudo sessaoEstudo;

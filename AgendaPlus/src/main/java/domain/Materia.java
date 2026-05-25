@@ -31,7 +31,7 @@ public class Materia {
     @Transient
     private Desempenho desempenho;
     
-    @OneToMany(mappedBy = "materia")
+    @OneToMany(mappedBy = "materia", fetch = FetchType.LAZY)
     private List<SessaoEstudo> sessaoEstudo;
 
     public Materia() {

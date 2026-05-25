@@ -30,11 +30,11 @@ public class SessaoEstudo {
     @Column(length = 500)
     private String observacao;
     
-    @ManyToOne
+    @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "idMateria")
     private Materia materia;
     
-    @OneToOne (mappedBy = "sessaoEstudo", cascade = CascadeType.ALL)
+    @OneToOne (mappedBy = "sessaoEstudo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Revisao revisao;
     
     
