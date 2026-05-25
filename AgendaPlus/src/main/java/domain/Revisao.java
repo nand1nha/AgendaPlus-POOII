@@ -22,9 +22,6 @@ public class Revisao {
     @Temporal(TemporalType.DATE)
     private Date dataRevisao;
     
-    @Temporal(TemporalType.DATE)
-    private Date dataRealizacao;
-    
     @Enumerated(EnumType.STRING)
     private TipoStatus status;
     
@@ -39,34 +36,30 @@ public class Revisao {
     public Revisao() {
     }
 
-    public Revisao(int idRevisao, Date dataRevisao, Date dataRealizacao, TipoStatus status, String observacao, SessaoEstudo sessaoEstudo) {
+    public Revisao(int idRevisao, Date dataRevisao, TipoStatus status, String observacao, SessaoEstudo sessaoEstudo) {
         this.idRevisao = idRevisao;
         this.dataRevisao = dataRevisao;
-        this.dataRealizacao = dataRealizacao;
         this.status = status;
         this.observacao = observacao;
         this.sessaoEstudo = sessaoEstudo;
     }
 
-    public Revisao(Date dataRevisao, Date dataRealizacao, TipoStatus status, String observacao, SessaoEstudo sessaoEstudo) {
+    public Revisao(Date dataRevisao, TipoStatus status, String observacao, SessaoEstudo sessaoEstudo) {
         this.dataRevisao = dataRevisao;
-        this.dataRealizacao = dataRealizacao;
         this.status = status;
         this.observacao = observacao;
         this.sessaoEstudo = sessaoEstudo;
     }
 
-    public Revisao(Date dataRevisao, Date dataRealizacao, TipoStatus status, String observacao) {
+    public Revisao(Date dataRevisao, TipoStatus status, String observacao) {
         this.dataRevisao = dataRevisao;
-        this.dataRealizacao = dataRealizacao;
         this.status = status;
         this.observacao = observacao;
     }
 
-    public Revisao(int idRevisao, Date dataRevisao, Date dataRealizacao, TipoStatus status, String observacao) {
+    public Revisao(int idRevisao, Date dataRevisao, TipoStatus status, String observacao) {
         this.idRevisao = idRevisao;
         this.dataRevisao = dataRevisao;
-        this.dataRealizacao = dataRealizacao;
         this.status = status;
         this.observacao = observacao;
     }
@@ -102,14 +95,6 @@ public class Revisao {
 
     public void setStatus(TipoStatus status) {
         this.status = status;
-    }
-
-    public Date getDataRealizacao() {
-        return dataRealizacao;
-    }
-
-    public void setDataRealizacao(Date dataRealizacao) {
-        this.dataRealizacao = dataRealizacao;
     }
 
     public String getObservacao() {

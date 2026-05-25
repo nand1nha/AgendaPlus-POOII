@@ -29,7 +29,7 @@ public class Materia {
     private TipoNivelDificuldade dificuldade;
     
     @Transient
-    private Desempenho desepenho;
+    private Desempenho desempenho;
     
     @OneToMany(mappedBy = "materia")
     private List<SessaoEstudo> sessaoEstudo;
@@ -42,7 +42,7 @@ public class Materia {
         this.nome = nome;
         this.descricao = descricao;
         this.dificuldade = dificuldade;
-        this.desepenho = desepenho;
+        this.desempenho = desepenho;
     }
 
     public Materia(String nome, String descricao, TipoNivelDificuldade dificuldade) {
@@ -74,7 +74,7 @@ public class Materia {
         this.nome = nome;
         this.descricao = descricao;
         this.dificuldade = dificuldade;
-        this.desepenho = desepenho;
+        this.desempenho = desepenho;
         this.sessaoEstudo = sessaoEstudo;
     }
 
@@ -82,16 +82,16 @@ public class Materia {
         this.nome = nome;
         this.descricao = descricao;
         this.dificuldade = dificuldade;
-        this.desepenho = desepenho;
+        this.desempenho = desepenho;
         this.sessaoEstudo = sessaoEstudo;
     }
 
     public Desempenho getDesepenho() {
-        return desepenho;
+        return desempenho;
     }
 
     public void setDesepenho(Desempenho desepenho) {
-        this.desepenho = desepenho;
+        this.desempenho = desepenho;
     }
 
     public String getNome() {

@@ -34,7 +34,7 @@ public class SessaoEstudo {
     @JoinColumn(name = "idMateria")
     private Materia materia;
     
-    @OneToOne (mappedBy = "sessaoEstudo")
+    @OneToOne (mappedBy = "sessaoEstudo", cascade = CascadeType.ALL)
     private Revisao revisao;
     
     
