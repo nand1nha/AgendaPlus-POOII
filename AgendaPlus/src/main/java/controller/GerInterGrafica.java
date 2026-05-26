@@ -48,11 +48,16 @@ public class GerInterGrafica {
         }
     }
 
-    public static GerInterGrafica getMyInstace() {
+    public static GerInterGrafica getMyInstance() {
         return myInstance;
     }
     
     // ### FIM do SINGLETON
+
+    public GerenciadorDominio getGerDominio() {
+        return gerDominio;
+    }
+
     
     private JDialog abrirJanela(java.awt.Frame parent, JDialog dlg, Class classe) {
         if (dlg == null){     
@@ -107,7 +112,7 @@ public class GerInterGrafica {
             lista = gerDominio.listarMateria();
             combo.setModel( new DefaultComboBoxModel(lista.toArray()));
         } catch (ClassNotFoundException | SQLException ex) {
-            JOptionPane.showMessageDialog(princ, "Erro ao carregar cidades " + ex);
+            JOptionPane.showMessageDialog(princ, "Erro ao carregar materia " + ex);
         }
         
     }
@@ -134,7 +139,7 @@ public class GerInterGrafica {
         //</editor-fold>
 
         /* Create and display the form */
-        GerInterGrafica.getMyInstace().abrirPrincipal();
+        GerInterGrafica.getMyInstance().abrirPrincipal();
     }
     
     

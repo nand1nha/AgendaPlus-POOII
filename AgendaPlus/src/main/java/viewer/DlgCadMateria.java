@@ -1,29 +1,33 @@
 package viewer;
 
-
+import controller.GerInterGrafica;
+import controller.GerenciadorDominio;
 import controller.TableModelMateria;
 import domain.Materia;
 import domain.TipoNivelDificuldade;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.Color;
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.table.DefaultTableModel;
+import org.hibernate.HibernateException;
+import org.hibernate.exception.ConstraintViolationException;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-
 /**
  *
  * @author 2024222760026
  */
 public class DlgCadMateria extends javax.swing.JDialog {
-    
+
     private TableModelMateria tblModelMateria;
-    
+    private Materia matSelecionada;
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DlgCadMateria.class.getName());
 
     /**
@@ -32,10 +36,15 @@ public class DlgCadMateria extends javax.swing.JDialog {
     public DlgCadMateria(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
-        
+
+        CmbNivelDif.removeAllItems();
+
+        CmbNivelDif.addItem("BAIXO");
+        CmbNivelDif.addItem("MEDIO");
+        CmbNivelDif.addItem("ALTO");
+
         BtnAddMateria.setEnabled(false);
-        
+
         TxtNome.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -51,13 +60,12 @@ public class DlgCadMateria extends javax.swing.JDialog {
             public void changedUpdate(DocumentEvent e) {
                 verificarCamposObrigatorios();
             }
-            
+
         });
-        
+
         tblModelMateria = new TableModelMateria();
         TabMateria.setModel(tblModelMateria);
     }
-   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -131,7 +139,6 @@ public class DlgCadMateria extends javax.swing.JDialog {
 
         jLabel3.setText("Nivel de dificuldade:");
 
-        CmbNivelDif.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fácil", "Médio", "Difícil" }));
         CmbNivelDif.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CmbNivelDifActionPerformed(evt);
@@ -222,6 +229,11 @@ public class DlgCadMateria extends javax.swing.JDialog {
         BtnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/png/16x16/accept.png"))); // NOI18N
         BtnSalvar.setText("Salvar");
         BtnSalvar.setEnabled(false);
+        BtnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -312,32 +324,44 @@ public class DlgCadMateria extends javax.swing.JDialog {
 
     private void BtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditarActionPerformed
         int linha = TabMateria.getSelectedRow();
-        if(linha >=0){
-            if(JOptionPane.showConfirmDialog(this,"Deseja realmente editar?","Confirmar edição", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-                TxtNome.setText(TabMateria.getValueAt(linha, 0).toString());
-                TxtDesc.setText(TabMateria.getValueAt(linha, 1).toString());
-                CmbNivelDif.setSelectedItem(TabMateria.getValueAt(linha, 2));
+        if (linha >= 0) {
+            if (JOptionPane.showConfirmDialog(this, "Deseja realmente editar?", "Confirmar edição", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+
+                matSelecionada = (Materia) tblModelMateria.getItem(linha);
+
+                TxtNome.setText(matSelecionada.getNome());
+                TxtDesc.setText(matSelecionada.getDescricao());
+
+                CmbNivelDif.setSelectedItem(matSelecionada.getDificuldade().name());
+
+                BtnSalvar.setEnabled(true);
+                BtnAddMateria.setEnabled(false);
             }
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(this, "Selecione uma linha da tabela", "Edição de materia", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_BtnEditarActionPerformed
 
     private void BtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcluirActionPerformed
         int linha = TabMateria.getSelectedRow();
-        if(linha >=0){
-            if(JOptionPane.showConfirmDialog(this,"Deseja realmente excluir?","Confirmar exclusão", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-                tblModelMateria.remover(linha);
+        if (linha >= 0) {
+            if (JOptionPane.showConfirmDialog(this, "Deseja realmente excluir?", "Confirmar exclusão", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                
+                matSelecionada = (Materia) tblModelMateria.getItem(linha);
+                
+                GerInterGrafica.getMyInstance().getGerDominio().excluirMateria(matSelecionada);
+                listarMateria();
+                
             }
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(this, "Selecione uma linha da tabela", "Exclusão de materia", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_BtnExcluirActionPerformed
 
     private void TxtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNomeActionPerformed
-        
+
     }//GEN-LAST:event_TxtNomeActionPerformed
 
     private void CmbNivelDifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbNivelDifActionPerformed
@@ -345,26 +369,40 @@ public class DlgCadMateria extends javax.swing.JDialog {
     }//GEN-LAST:event_CmbNivelDifActionPerformed
 
     private void BtnAddMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddMateriaActionPerformed
-        
+
         // Pegar todos os campos
         String nome = TxtNome.getText();
         String descricao = TxtDesc.getText();
-        TipoNivelDificuldade dificuldade =  (TipoNivelDificuldade) CmbNivelDif.getSelectedItem();
-        
-        
-        adicionarTabela(nome, descricao, dificuldade);
-        
-        //RESET campos
-        TxtNome.setText("");
-        TxtDesc.setText("");
-        CmbNivelDif.setSelectedIndex(0);
-        
-        int cont = TabMateria.getRowCount();
-        if(cont == 0){
-            BtnSalvar.setEnabled(false);
-        }else{
-            BtnSalvar.setEnabled(true);
+
+        String valor = (String) CmbNivelDif.getSelectedItem();
+        TipoNivelDificuldade dificuldade = TipoNivelDificuldade.valueOf(valor);
+
+        if (validarCampos()) {
+
+            try {
+
+                // INSERIR
+                matSelecionada = GerInterGrafica.getMyInstance().getGerDominio().inserirMateria(nome, descricao, dificuldade);
+                JOptionPane.showMessageDialog(this, "Matéria " + matSelecionada.getIdMateria() + " inserida com sucesso.", "Cadastro da Matéria", JOptionPane.INFORMATION_MESSAGE);
+
+                limparCampos();
+
+            } catch (HibernateException ex) {
+                if (ex.getCause() instanceof ConstraintViolationException) {
+
+                    JOptionPane.showMessageDialog(this, "Já existe uma matéria com esse nome.", "Nome duplicado", JOptionPane.ERROR_MESSAGE);
+
+                } else {
+
+                    JOptionPane.showMessageDialog(this, "Erro ao salvar matéria.", "Erro", JOptionPane.ERROR_MESSAGE);
+
+                }
+            }
+
         }
+        listarMateria();
+
+
     }//GEN-LAST:event_BtnAddMateriaActionPerformed
 
     private void BtnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVoltarActionPerformed
@@ -372,37 +410,105 @@ public class DlgCadMateria extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnVoltarActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-
+        listarMateria();
     }//GEN-LAST:event_formComponentShown
 
     private void TabMateriaComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_TabMateriaComponentAdded
 
     }//GEN-LAST:event_TabMateriaComponentAdded
 
-    private void adicionarTabela(String nome, String descricao, TipoNivelDificuldade dificuldade){
-        
-        Materia materia = new Materia(nome, descricao, dificuldade);
-        tblModelMateria.adicionar(materia);
-        
-       
-//        int linha = TabMateria.getRowCount();
-//        int col = 0;
-//        
-//        //CRIAR linha nova
-//        ((DefaultTableModel) TabMateria.getModel()).addRow( new Object[3]);
-//        TabMateria.setValueAt(nome, linha, col++);
-//        TabMateria.setValueAt(descricao, linha, col++);
-//        TabMateria.setValueAt(dificuldade, linha, col++);
+    private void BtnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalvarActionPerformed
+        String nome = TxtNome.getText();
+        String descricao = TxtDesc.getText();
 
-        
+        String valor = (String) CmbNivelDif.getSelectedItem();
+        TipoNivelDificuldade dificuldade = TipoNivelDificuldade.valueOf(valor);
+
+        if (validarCampos()) {
+
+            try {
+
+                if (matSelecionada != null) {
+                    // INSERIR
+                    GerInterGrafica.getMyInstance().getGerDominio().alterarMateria(matSelecionada.getIdMateria(), nome, descricao, dificuldade);
+                    JOptionPane.showMessageDialog(this, "Matéria " + matSelecionada.getIdMateria() + " inserida com sucesso.", "Cadastro da Matéria", JOptionPane.INFORMATION_MESSAGE);
+
+                    limparCampos();
+                }
+
+            } catch (HibernateException ex) {
+                if (ex.getCause() instanceof ConstraintViolationException) {
+
+                    JOptionPane.showMessageDialog(this, "Já existe uma matéria com esse nome.", "Nome duplicado", JOptionPane.ERROR_MESSAGE);
+
+                } else {
+
+                    JOptionPane.showMessageDialog(this, "Erro ao salvar matéria.", "Erro", JOptionPane.ERROR_MESSAGE);
+
+                }
+            }
+
+        }
+        listarMateria();
+        BtnSalvar.setEnabled(false);
+    }//GEN-LAST:event_BtnSalvarActionPerformed
+
+    private void listarMateria() {
+
+        GerenciadorDominio gerDom;
+        try {
+            gerDom = new GerenciadorDominio();
+            List lista = gerDom.listarMateria();
+
+            if (lista.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "O sistema não tem nenhuma matéria registrada, cadastre uma matéria. ");
+            } else {
+                tblModelMateria.setLista(lista);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Erro ao listar matéria " + ex);
+        }
+
     }
-    
-    private void verificarCamposObrigatorios(){
-        boolean temTexto = !TxtNome.getText().trim().isEmpty();
-        
+
+    private boolean validarCampos() {
+
+        String msgErro = "";
+
+        jLabel1.setForeground(Color.black);
+
+        if (TxtNome.getText().isEmpty()) {
+            msgErro = msgErro + "Digite o nome da matéria.\n";
+            jLabel1.setForeground(Color.red);
+        }
+
+        if (msgErro.isEmpty()) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(this, msgErro, "ERRO Matéria", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+    }
+
+    private void verificarCamposObrigatorios() {
+        boolean temTexto;;
+        if (BtnSalvar.isEnabled()) {
+            temTexto = false;
+        } else {
+            temTexto = !TxtNome.getText().trim().isEmpty();
+        }
+
         BtnAddMateria.setEnabled(temTexto);
     }
-    
+
+    private void limparCampos() {
+        TxtNome.setText("");
+        TxtDesc.setText("");
+        CmbNivelDif.setSelectedIndex(0);
+
+    }
+
     /**
      * @param args the command line arguments
      */

@@ -238,7 +238,7 @@ public class FrmDesempenho extends javax.swing.JFrame {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         
-        GerInterGrafica.getMyInstace().carregarComboMateria(jComboBox1);
+        GerInterGrafica.getMyInstance().carregarComboMateria(jComboBox1);
     }//GEN-LAST:event_formComponentShown
 
     /**

@@ -5,9 +5,9 @@
 package controller;
 
 import dao.ConexaoHibernate;
-import dao.ConexaoPostgres;
-import dao.MateriaDAO;
+import dao.GenericDAO;
 import domain.Materia;
+import domain.TipoNivelDificuldade;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -17,16 +17,38 @@ import java.util.List;
  */
 public class GerenciadorDominio {
     
-    private MateriaDAO matDAO;
+    private GenericDAO genDAO;
     
     public GerenciadorDominio() throws ClassNotFoundException, SQLException {
         //TESTE
         ConexaoHibernate.getSessionFactory().openSession();
         
-        matDAO = new MateriaDAO(); 
+        genDAO = new GenericDAO(); 
     }
     
     public List<Materia> listarMateria() throws ClassNotFoundException, SQLException{
-        return matDAO.listar();
+        List<Materia> lista = genDAO.listar(Materia.class);
+        return lista;
     }
+    
+    public Materia inserirMateria(String nome, String descricao, TipoNivelDificuldade dificuldade){
+        
+        Materia mat = new Materia(nome, descricao, dificuldade);
+        
+        genDAO.inserir(mat); 
+        return mat;
+    }
+    
+    public void alterarMateria(int idMateria, String nome, String descricao, TipoNivelDificuldade dificuldade){
+        
+        Materia mat = new Materia(nome, descricao, dificuldade);
+        mat.setIdMateria(idMateria);
+        genDAO.alterar(mat);
+        
+    }
+    
+    public void excluirMateria(Materia mat){
+        genDAO.excluir(mat);
+    }
+    
 }

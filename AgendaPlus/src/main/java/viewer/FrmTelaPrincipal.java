@@ -270,12 +270,12 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CadMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadMateriaActionPerformed
-        GerInterGrafica.getMyInstace().abrirCadMateria();
+        GerInterGrafica.getMyInstance().abrirCadMateria();
     }//GEN-LAST:event_CadMateriaActionPerformed
 
     private void RegSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegSessaoActionPerformed
         // TODO add your handling code here:
-        GerInterGrafica.getMyInstace().abrirSessaoEstudo();
+        GerInterGrafica.getMyInstance().abrirSessaoEstudo();
     }//GEN-LAST:event_RegSessaoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -284,32 +284,32 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
 
     private void BtnRegSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegSessaoActionPerformed
         // TODO add your handling code here:
-        GerInterGrafica.getMyInstace().abrirSessaoEstudo();
+        GerInterGrafica.getMyInstance().abrirSessaoEstudo();
     }//GEN-LAST:event_BtnRegSessaoActionPerformed
 
     private void BtnVerDesempenhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerDesempenhoActionPerformed
         // TODO add your handling code here:
-        GerInterGrafica.getMyInstace().abrirDesempenho();
+        GerInterGrafica.getMyInstance().abrirDesempenho();
     }//GEN-LAST:event_BtnVerDesempenhoActionPerformed
 
     private void BtnCadMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadMateriaActionPerformed
         // TODO add your handling code here:
-        GerInterGrafica.getMyInstace().abrirCadMateria();
+        GerInterGrafica.getMyInstance().abrirCadMateria();
     }//GEN-LAST:event_BtnCadMateriaActionPerformed
 
     private void BtnVerRevisaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerRevisaoActionPerformed
         // TODO add your handling code here:
-        GerInterGrafica.getMyInstace().abrirRevisao();
+        GerInterGrafica.getMyInstance().abrirRevisao();
     }//GEN-LAST:event_BtnVerRevisaoActionPerformed
 
     private void DesempenhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DesempenhoActionPerformed
         // TODO add your handling code here:
-        GerInterGrafica.getMyInstace().abrirDesempenho();
+        GerInterGrafica.getMyInstance().abrirDesempenho();
     }//GEN-LAST:event_DesempenhoActionPerformed
 
     private void mbRevisoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbRevisoesActionPerformed
         // TODO add your handling code here:
-        GerInterGrafica.getMyInstace().abrirRevisao();
+        GerInterGrafica.getMyInstance().abrirRevisao();
     }//GEN-LAST:event_mbRevisoesActionPerformed
 
     

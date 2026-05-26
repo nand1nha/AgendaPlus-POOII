@@ -51,8 +51,8 @@ public class Materia {
         this.dificuldade = dificuldade;
     }
 
-    public Materia(String nome, TipoNivelDificuldade dificuldade) {
-        this.nome = nome;
+    public Materia(String descricao, TipoNivelDificuldade dificuldade) {
+        this.descricao = descricao;
         this.dificuldade = dificuldade;
     }
     
@@ -63,22 +63,8 @@ public class Materia {
         this.dificuldade = dificuldade;
     }
 
-    public Materia(int idMateria, String nome, TipoNivelDificuldade dificuldade) {
-        this.idMateria = idMateria;
-        this.nome = nome;
-        this.dificuldade = dificuldade;
-    }
-
     public Materia(int idMateria, String nome, String descricao, TipoNivelDificuldade dificuldade, Desempenho desepenho, List<SessaoEstudo> sessaoEstudo) {
         this.idMateria = idMateria;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.dificuldade = dificuldade;
-        this.desempenho = desepenho;
-        this.sessaoEstudo = sessaoEstudo;
-    }
-
-    public Materia(String nome, String descricao, TipoNivelDificuldade dificuldade, Desempenho desepenho, List<SessaoEstudo> sessaoEstudo) {
         this.nome = nome;
         this.descricao = descricao;
         this.dificuldade = dificuldade;

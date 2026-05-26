@@ -286,7 +286,7 @@ public class DlgSessaoEstudo extends javax.swing.JDialog {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         
-        GerInterGrafica.getMyInstace().carregarComboMateria(jComboBox2);
+        GerInterGrafica.getMyInstance().carregarComboMateria(jComboBox2);
     }//GEN-LAST:event_formComponentShown
 
     /**
