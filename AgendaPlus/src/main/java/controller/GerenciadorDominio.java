@@ -7,9 +7,14 @@ package controller;
 import dao.ConexaoHibernate;
 import dao.GenericDAO;
 import domain.Materia;
+import domain.Revisao;
+import domain.SessaoEstudo;
 import domain.TipoNivelDificuldade;
+import domain.TipoStatus;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
+import org.hibernate.HibernateException;
 
 /**
  *
@@ -31,12 +36,25 @@ public class GerenciadorDominio {
         return lista;
     }
     
+    public List<Revisao> listarRevisao() throws ClassNotFoundException, SQLException{
+        List<Revisao> lista = genDAO.listar(Revisao.class);
+        return lista;
+    }
+    
     public Materia inserirMateria(String nome, String descricao, TipoNivelDificuldade dificuldade){
         
         Materia mat = new Materia(nome, descricao, dificuldade);
         
         genDAO.inserir(mat); 
         return mat;
+    }
+    
+    public SessaoEstudo inserirSessaoEstudo(Date dataEstudo, int totalQuestoes, int acertos, String observacao, Materia materia, Date dataRevisao, TipoStatus status){
+        
+        SessaoEstudo sessao = new SessaoEstudo(dataEstudo, totalQuestoes, acertos, observacao, materia, dataRevisao, status);
+        
+        genDAO.inserir(sessao); 
+        return sessao;
     }
     
     public void alterarMateria(int idMateria, String nome, String descricao, TipoNivelDificuldade dificuldade){
@@ -47,8 +65,9 @@ public class GerenciadorDominio {
         
     }
     
-    public void excluirMateria(Materia mat){
-        genDAO.excluir(mat);
+    // EXCLUIR GENÉRICO
+    public void excluir(Object obj) throws HibernateException {                                
+        genDAO.excluir(obj);
     }
     
 }

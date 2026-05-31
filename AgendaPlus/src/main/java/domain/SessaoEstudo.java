@@ -61,21 +61,25 @@ public class SessaoEstudo {
         this.revisao = revisao;
     }
 
-    public SessaoEstudo(int idSessaoEstudo, Date dataEstudo, int totalQuestoes, int acertos, String observacao, Materia materia) {
+    public SessaoEstudo(int idSessaoEstudo, Date dataEstudo, int totalQuestoes, int acertos, String observacao, Materia materia, Date dataRevisao, TipoStatus status) {
         this.idSessaoEstudo = idSessaoEstudo;
         this.dataEstudo = dataEstudo;
         this.totalQuestoes = totalQuestoes;
         this.acertos = acertos;
         this.observacao = observacao;
         this.materia = materia;
+        this.revisao = new Revisao(dataRevisao,status,observacao);
+        this.revisao.setSessaoEstudo(this);
     }
 
-    public SessaoEstudo(Date dataEstudo, int totalQuestoes, int acertos, String observacao, Materia materia) {
+    public SessaoEstudo(Date dataEstudo, int totalQuestoes, int acertos, String observacao, Materia materia, Date dataRevisao, TipoStatus status) {
         this.dataEstudo = dataEstudo;
         this.totalQuestoes = totalQuestoes;
         this.acertos = acertos;
         this.observacao = observacao;
         this.materia = materia;
+        this.revisao = new Revisao(dataRevisao,status,observacao);
+        this.revisao.setSessaoEstudo(this);
     }
     
     public Materia getMateria() {

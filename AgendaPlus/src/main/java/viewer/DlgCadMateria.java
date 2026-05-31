@@ -350,7 +350,7 @@ public class DlgCadMateria extends javax.swing.JDialog {
                 
                 matSelecionada = (Materia) tblModelMateria.getItem(linha);
                 
-                GerInterGrafica.getMyInstance().getGerDominio().excluirMateria(matSelecionada);
+                GerInterGrafica.getMyInstance().getGerDominio().excluir(matSelecionada);
                 listarMateria();
                 
             }
@@ -492,7 +492,7 @@ public class DlgCadMateria extends javax.swing.JDialog {
     }
 
     private void verificarCamposObrigatorios() {
-        boolean temTexto;;
+        boolean temTexto;
         if (BtnSalvar.isEnabled()) {
             temTexto = false;
         } else {

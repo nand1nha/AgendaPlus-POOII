@@ -1,6 +1,13 @@
 package viewer;
 
 import controller.GerInterGrafica;
+import controller.GerenciadorDominio;
+import controller.TableModelRevisao;
+import domain.Materia;
+import domain.Revisao;
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -13,6 +20,9 @@ import controller.GerInterGrafica;
  */
 public class FrmRevisao extends javax.swing.JFrame {
     
+    private TableModelRevisao tblModelRevisao; 
+    private Revisao revSelecionada;
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmRevisao.class.getName());
 
     /**
@@ -20,6 +30,8 @@ public class FrmRevisao extends javax.swing.JFrame {
      */
     public FrmRevisao() {
         initComponents();
+        tblModelRevisao = new TableModelRevisao();
+        jTable1.setModel(tblModelRevisao);
     }
 
     /**
@@ -31,6 +43,8 @@ public class FrmRevisao extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu2 = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -38,6 +52,13 @@ public class FrmRevisao extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        BtnEditar1 = new javax.swing.JButton();
+        BtnExcluir = new javax.swing.JButton();
+        BtnVoltar = new javax.swing.JButton();
+
+        jMenuItem1.setText("jMenuItem1");
+        jPopupMenu2.add(jMenuItem1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Revisões");
@@ -67,7 +88,7 @@ public class FrmRevisao extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(20, 20, 20))
         );
@@ -111,6 +132,54 @@ public class FrmRevisao extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        BtnEditar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/png/16x16/window_edit.png"))); // NOI18N
+        BtnEditar1.setText("Editar");
+        BtnEditar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEditar1ActionPerformed(evt);
+            }
+        });
+
+        BtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/png/16x16/remove.png"))); // NOI18N
+        BtnExcluir.setText("Excluir");
+        BtnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnExcluirActionPerformed(evt);
+            }
+        });
+
+        BtnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/png/16x16/back.png"))); // NOI18N
+        BtnVoltar.setText("Voltar");
+        BtnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnVoltarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BtnEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(BtnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BtnVoltar)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnExcluir)
+                    .addComponent(BtnEditar1)
+                    .addComponent(BtnVoltar))
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,7 +190,8 @@ public class FrmRevisao extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +200,9 @@ public class FrmRevisao extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -143,8 +215,52 @@ public class FrmRevisao extends javax.swing.JFrame {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
        
         GerInterGrafica.getMyInstance().carregarComboMateria(jComboBox1);
+        listarRevisao();
     }//GEN-LAST:event_formComponentShown
 
+    private void BtnEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditar1ActionPerformed
+        
+    }//GEN-LAST:event_BtnEditar1ActionPerformed
+
+    private void BtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcluirActionPerformed
+        int linha = jTable1.getSelectedRow();
+        if (linha >= 0) {
+            if (JOptionPane.showConfirmDialog(this, "Deseja realmente excluir?", "Confirmar exclusão", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                
+                revSelecionada = (Revisao) tblModelRevisao.getItem(linha);
+                
+                GerInterGrafica.getMyInstance().getGerDominio().excluir(revSelecionada);
+                listarRevisao();
+                
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione uma linha da tabela", "Exclusão de materia", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_BtnExcluirActionPerformed
+
+    private void BtnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVoltarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnVoltarActionPerformed
+
+    private void listarRevisao() {
+
+        GerenciadorDominio gerDom;
+        try {
+            gerDom = new GerenciadorDominio();
+            List lista = gerDom.listarRevisao();
+
+            if (lista.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "O sistema não tem nenhuma revisão registrada, cadastre uma sessão para calcular sua proxima revisão. ");
+            } else {
+                tblModelRevisao.setLista(lista);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Erro ao listar revisão " + ex);
+        }
+
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -171,11 +287,17 @@ public class FrmRevisao extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnEditar1;
+    private javax.swing.JButton BtnExcluir;
+    private javax.swing.JButton BtnVoltar;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
