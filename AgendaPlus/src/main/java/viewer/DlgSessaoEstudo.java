@@ -316,15 +316,7 @@ public class DlgSessaoEstudo extends javax.swing.JDialog {
                 limparCampos();
 
             } catch (HibernateException ex) {
-                if (ex.getCause() instanceof ConstraintViolationException) {
-
-                    JOptionPane.showMessageDialog(this, "Já existe uma matéria com esse nome.", "Nome duplicado", JOptionPane.ERROR_MESSAGE);
-
-                } else {
-
-                    JOptionPane.showMessageDialog(this, "Erro ao salvar matéria.", "Erro", JOptionPane.ERROR_MESSAGE);
-
-                }
+                JOptionPane.showMessageDialog(this, "Erro ao salvar sessão.", "Erro", JOptionPane.ERROR_MESSAGE);
             }
 
         }

@@ -5,6 +5,7 @@
 package controller;
 
 import domain.Materia;
+import domain.Revisao;
 import java.awt.Frame;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
@@ -15,6 +16,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import viewer.DlgCadMateria;
+import viewer.DlgEditarRevisao;
 import viewer.DlgSessaoEstudo;
 import viewer.FrmDesempenho;
 import viewer.FrmRevisao;
@@ -35,6 +37,7 @@ public class GerInterGrafica {
     private DlgSessaoEstudo janSessaoEstudo;
     private FrmDesempenho janDesempenho;
     private FrmRevisao janRevisao;
+    private DlgEditarRevisao janEditarRevisao;
     
     private GerenciadorDominio gerDominio;
     
@@ -104,6 +107,18 @@ public class GerInterGrafica {
     
     public void abrirRevisao(){
         abrirJanelaFrm(princ,janRevisao,FrmRevisao.class).setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+    
+    public Revisao abrirEditarRevisao( Revisao rev){
+        if(janEditarRevisao == null){
+            janEditarRevisao = new DlgEditarRevisao(princ, true);
+        }
+
+        janEditarRevisao.setRevSelecionada(rev);
+
+        janEditarRevisao.setVisible(true);
+
+        return janEditarRevisao.getRevSelecionada();
     }
     
     public  void carregarComboMateria( JComboBox combo ){

@@ -65,6 +65,14 @@ public class GerenciadorDominio {
         
     }
     
+    public void alterarRevisao(int idRevisao, Date dataRevisao, TipoStatus status, String observacao, SessaoEstudo sessaoEstudo){
+        
+        Revisao rev = new Revisao(dataRevisao, status, observacao, sessaoEstudo);
+        rev.setIdRevisao(idRevisao);
+        genDAO.alterar(rev);
+        
+    }
+    
     // EXCLUIR GENÉRICO
     public void excluir(Object obj) throws HibernateException {                                
         genDAO.excluir(obj);

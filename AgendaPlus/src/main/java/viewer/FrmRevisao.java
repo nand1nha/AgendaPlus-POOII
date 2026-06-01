@@ -62,6 +62,7 @@ public class FrmRevisao extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Revisões");
+        setAutoRequestFocus(false);
         setResizable(false);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -219,7 +220,18 @@ public class FrmRevisao extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentShown
 
     private void BtnEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditar1ActionPerformed
+        int linha = jTable1.getSelectedRow();
+
+        if(linha == -1){
+            JOptionPane.showMessageDialog(this,
+                    "Selecione uma revisão.");
+            return;
+        }
+
+        revSelecionada = (Revisao) tblModelRevisao.getItem(linha); 
+        revSelecionada = GerInterGrafica.getMyInstance().abrirEditarRevisao(revSelecionada);
         
+        listarRevisao();
     }//GEN-LAST:event_BtnEditar1ActionPerformed
 
     private void BtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcluirActionPerformed
