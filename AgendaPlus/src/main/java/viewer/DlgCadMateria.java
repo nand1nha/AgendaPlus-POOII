@@ -127,23 +127,11 @@ public class DlgCadMateria extends javax.swing.JDialog {
 
         jLabel2.setText("Descrição:");
 
-        TxtNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtNomeActionPerformed(evt);
-            }
-        });
-
         TxtDesc.setColumns(20);
         TxtDesc.setRows(5);
         jScrollPane1.setViewportView(TxtDesc);
 
         jLabel3.setText("Nivel de dificuldade:");
-
-        CmbNivelDif.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CmbNivelDifActionPerformed(evt);
-            }
-        });
 
         BtnAddMateria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/png/16x16/add.png"))); // NOI18N
         BtnAddMateria.setText("Adicionar");
@@ -288,11 +276,6 @@ public class DlgCadMateria extends javax.swing.JDialog {
         TabMateria.setComponentPopupMenu(popupTabela);
         TabMateria.setShowHorizontalLines(true);
         TabMateria.setShowVerticalLines(true);
-        TabMateria.addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentAdded(java.awt.event.ContainerEvent evt) {
-                TabMateriaComponentAdded(evt);
-            }
-        });
         jScrollPane2.setViewportView(TabMateria);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -360,14 +343,6 @@ public class DlgCadMateria extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnExcluirActionPerformed
 
-    private void TxtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNomeActionPerformed
-
-    }//GEN-LAST:event_TxtNomeActionPerformed
-
-    private void CmbNivelDifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbNivelDifActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CmbNivelDifActionPerformed
-
     private void BtnAddMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddMateriaActionPerformed
 
         // Pegar todos os campos
@@ -406,16 +381,12 @@ public class DlgCadMateria extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnAddMateriaActionPerformed
 
     private void BtnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVoltarActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_BtnVoltarActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         listarMateria();
     }//GEN-LAST:event_formComponentShown
-
-    private void TabMateriaComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_TabMateriaComponentAdded
-
-    }//GEN-LAST:event_TabMateriaComponentAdded
 
     private void BtnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalvarActionPerformed
         String nome = TxtNome.getText();
@@ -431,7 +402,7 @@ public class DlgCadMateria extends javax.swing.JDialog {
                 if (matSelecionada != null) {
                     // INSERIR
                     GerInterGrafica.getMyInstance().getGerDominio().alterarMateria(matSelecionada.getIdMateria(), nome, descricao, dificuldade);
-                    JOptionPane.showMessageDialog(this, "Matéria " + matSelecionada.getIdMateria() + " inserida com sucesso.", "Cadastro da Matéria", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Matéria " + matSelecionada.getIdMateria() + " atualizada com sucesso.", "Atualização da Matéria", JOptionPane.INFORMATION_MESSAGE);
 
                     limparCampos();
                 }
@@ -443,7 +414,7 @@ public class DlgCadMateria extends javax.swing.JDialog {
 
                 } else {
 
-                    JOptionPane.showMessageDialog(this, "Erro ao salvar matéria.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Erro ao alterar matéria.", "Erro", JOptionPane.ERROR_MESSAGE);
 
                 }
             }

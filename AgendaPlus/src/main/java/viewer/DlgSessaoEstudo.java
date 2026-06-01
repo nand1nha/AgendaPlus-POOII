@@ -2,7 +2,6 @@ package viewer;
 
 import controller.GerInterGrafica;
 import domain.Materia;
-import domain.TipoNivelDificuldade;
 import domain.TipoStatus;
 import java.awt.Color;
 import java.text.ParseException;
@@ -12,8 +11,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import org.hibernate.HibernateException;
-import org.hibernate.exception.ConstraintViolationException;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -27,14 +27,40 @@ import org.hibernate.exception.ConstraintViolationException;
 public class DlgSessaoEstudo extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DlgSessaoEstudo.class.getName());
+    
+    
 
     /**
      * Creates new form DlgSessaoEstudo
      */
+    
     public DlgSessaoEstudo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        DocumentListener listener = new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                calculos();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                calculos();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                calculos();
+            }
+        };
+
+        txtData.getDocument().addDocumentListener(listener);
+        txtAcertos.getDocument().addDocumentListener(listener);
+        txtTotalQuest.getDocument().addDocumentListener(listener);
     }
+    
+    
     
 
     /**
@@ -84,12 +110,6 @@ public class DlgSessaoEstudo extends javax.swing.JDialog {
 
         jLabel8.setText("Acertos:");
 
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
-
         try {
             txtData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
@@ -106,33 +126,13 @@ public class DlgSessaoEstudo extends javax.swing.JDialog {
             ex.printStackTrace();
         }
         txtDataRevi.setEnabled(false);
-        txtDataRevi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDataReviActionPerformed(evt);
-            }
-        });
 
         txtTotalQuest.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         txtTotalQuest.setText("0");
-        txtTotalQuest.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtTotalQuestFocusLost(evt);
-            }
-        });
-        txtTotalQuest.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTotalQuestActionPerformed(evt);
-            }
-        });
 
         txtPorcentagem.setEditable(false);
         txtPorcentagem.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         txtPorcentagem.setEnabled(false);
-        txtPorcentagem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPorcentagemActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Observação:");
 
@@ -142,16 +142,6 @@ public class DlgSessaoEstudo extends javax.swing.JDialog {
 
         txtAcertos.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         txtAcertos.setText("0");
-        txtAcertos.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtAcertosFocusLost(evt);
-            }
-        });
-        txtAcertos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAcertosActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -233,6 +223,11 @@ public class DlgSessaoEstudo extends javax.swing.JDialog {
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/png/16x16/remove.png"))); // NOI18N
         jButton4.setText("Cancelar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -281,31 +276,30 @@ public class DlgSessaoEstudo extends javax.swing.JDialog {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // Pegar todos os campos
-        Materia materia = (Materia) jComboBox2.getSelectedItem();
-        
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        String data = txtData.getText();
-        Date dataEstudo = null;
-        try {
-            dataEstudo = formato.parse(data);
-        } catch (ParseException ex) {
-            System.getLogger(DlgSessaoEstudo.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-        }
-        String dataRevisao = txtDataRevi.getText();
-        Date revisao = null;
-        try {
-            revisao = formato.parse(dataRevisao);
-        } catch (ParseException ex) {
-            System.getLogger(DlgSessaoEstudo.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-        }
-        
-        int totalQuestoes = ((Long) txtTotalQuest.getValue()).intValue();
-        int acertos = ((Long) txtAcertos.getValue()).intValue();
-
-        
-        String descricao = jTextArea1.getText();
-
         if (validarCampos()) {
+            
+            Materia materia = (Materia) jComboBox2.getSelectedItem();
+        
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String data = txtData.getText();
+            Date dataEstudo = null;
+            try {
+                dataEstudo = formato.parse(data);
+            } catch (ParseException ex) {
+                System.getLogger(DlgSessaoEstudo.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            }
+            String dataRevisao = txtDataRevi.getText();
+            Date revisao = null;
+            try {
+                revisao = formato.parse(dataRevisao);
+            } catch (ParseException ex) {
+                System.getLogger(DlgSessaoEstudo.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            }
+
+            int totalQuestoes = ((Long) txtTotalQuest.getValue()).intValue();
+            int acertos = ((Long) txtAcertos.getValue()).intValue();
+            
+            String descricao = jTextArea1.getText();
 
             try {
 
@@ -322,106 +316,78 @@ public class DlgSessaoEstudo extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void txtTotalQuestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalQuestActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTotalQuestActionPerformed
-
-    private void txtPorcentagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPorcentagemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPorcentagemActionPerformed
-
-    private void txtAcertosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAcertosFocusLost
-        calculos();  
-    }//GEN-LAST:event_txtAcertosFocusLost
-
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
-
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         
         GerInterGrafica.getMyInstance().carregarComboMateria(jComboBox2);
     }//GEN-LAST:event_formComponentShown
 
-    private void txtDataReviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataReviActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDataReviActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void txtTotalQuestFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTotalQuestFocusLost
-        calculos();
-    }//GEN-LAST:event_txtTotalQuestFocusLost
+    private void calculos() {
 
-    private void txtAcertosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAcertosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAcertosActionPerformed
-
-    private void calculos(){
         try {
 
-            if(txtTotalQuest.getText().trim().isEmpty() &&
-               txtAcertos.getText().trim().isEmpty()) {
+            String totalTexto = txtTotalQuest.getText().trim();
+            String acertosTexto = txtAcertos.getText().trim();
 
-                JOptionPane.showMessageDialog(this,"Preencha o total de questões e os acertos.");
-                return;
-            }
-
-            int total = Integer.parseInt(txtTotalQuest.getText());
-            int acertos = Integer.parseInt(txtAcertos.getText());
-
-
-            if(total < 0 || acertos < 0) {
-                JOptionPane.showMessageDialog(this,"Os valores não podem ser negativos.");
-                return;
-            }
-
-            if(acertos > total) {
-                JOptionPane.showMessageDialog(this,"O número de acertos não pode ser maior que o total de questões.");
-                return;
-            }
-
-            if(total == 0) {
-                txtPorcentagem.setText("0%");
+            if (totalTexto.isEmpty() || acertosTexto.isEmpty()) {
+                txtPorcentagem.setText("");
                 txtDataRevi.setValue(null);
                 return;
             }
 
+            int total = Integer.parseInt(totalTexto);
+            int acertos = Integer.parseInt(acertosTexto);
+
+            if (total <= 0) {
+                txtPorcentagem.setText("");
+                txtDataRevi.setValue(null);
+                return;
+            }
+
+            if (acertos < 0 || acertos > total) {
+                txtPorcentagem.setText("");
+                txtDataRevi.setValue(null);
+                return;
+            }
 
             int porcentagem = (acertos * 100) / total;
             txtPorcentagem.setText(porcentagem + "%");
 
+            String dataTexto = txtData.getText().trim();
+
+
+            if (dataTexto.replace("/", "").trim().isEmpty()) {
+                txtDataRevi.setValue(null);
+                return;
+            }
 
             int diasRevisao;
 
-            if(porcentagem < 50) {
+            if (porcentagem < 50) {
                 diasRevisao = 1;
-            }
-            else if(porcentagem < 70) {
+            } else if (porcentagem < 70) {
                 diasRevisao = 2;
-            }
-            else if(porcentagem < 90) {
+            } else if (porcentagem < 90) {
                 diasRevisao = 4;
-            }
-            else {
+            } else {
                 diasRevisao = 7;
             }
 
             DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-            LocalDate dataSessao = LocalDate.parse(txtData.getText(), formato);
+            LocalDate dataSessao = LocalDate.parse(dataTexto, formato);
 
             LocalDate dataRevisao = dataSessao.plusDays(diasRevisao);
 
             txtDataRevi.setValue(dataRevisao.format(formato));
 
-        }
-        catch(NumberFormatException e) {
+        } catch (NumberFormatException | DateTimeParseException e) {
 
-            JOptionPane.showMessageDialog(this,"Digite apenas números nos campos de questões e acertos.");
-
-        }
-        catch(DateTimeParseException e) {
-
-            JOptionPane.showMessageDialog(this,"Digite uma data válida.");
+            txtPorcentagem.setText("");
+            txtDataRevi.setValue(null);
 
         }
     }
@@ -445,19 +411,30 @@ public class DlgSessaoEstudo extends javax.swing.JDialog {
         jLabel7.setForeground(Color.black);
         jLabel8.setForeground(Color.black);
 
-        if (txtData.getText().isEmpty()) {
+        if (txtData.getText().equals("  /  /    ")) {
             msgErro = msgErro + "Digite a data da sessão de estudo.\n";
-            jLabel1.setForeground(Color.red);
+            jLabel6.setForeground(Color.red);
         }
         
-        if (txtAcertos.getText().isEmpty()) {
-            msgErro = msgErro + "Digite a quantidade de acertos.\n";
-            jLabel8.setForeground(Color.red);
-        }
-        
-        if (txtTotalQuest.getText().isEmpty()) {
-            msgErro = msgErro + "Digite o total de questões.\n";
-            jLabel7.setForeground(Color.red);
+        try {
+            int acertos = Integer.parseInt(txtAcertos.getText());
+            int totalQuest = Integer.parseInt(txtTotalQuest.getText());
+
+            if (acertos <= 0) {
+                msgErro += "Digite a quantidade de acertos.\n";
+                jLabel7.setForeground(Color.red);
+            }
+            if (totalQuest <= 0){
+                msgErro += "Digite a quantidade total de questões.\n";
+                jLabel8.setForeground(Color.red);
+            }
+            if (acertos > totalQuest){
+                msgErro += "Total de questões não pode ser menor que acertos.\n";
+                jLabel7.setForeground(Color.red);
+                jLabel8.setForeground(Color.red);
+            }
+        } catch (NumberFormatException e) {
+            msgErro += "Digite numeros válidos.\n";
         }
 
         if (msgErro.isEmpty()) {
