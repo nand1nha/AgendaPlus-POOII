@@ -65,7 +65,6 @@ public class DlgEditarRevisao extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -82,8 +81,6 @@ public class DlgEditarRevisao extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         BtnSalvar = new javax.swing.JButton();
         BtnCancelar = new javax.swing.JButton();
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Alterar Status da Revisão");
@@ -239,12 +236,13 @@ public class DlgEditarRevisao extends javax.swing.JDialog {
 
     private void BtnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalvarActionPerformed
         String valor = (String) jComboBox3.getSelectedItem();
+        String observ = jTextArea1.getText();
         TipoStatus status = TipoStatus.valueOf(valor);
         
         try {
 
                 // INSERIR
-                GerInterGrafica.getMyInstance().getGerDominio().alterarRevisao(revSelecionada.getIdRevisao(), revSelecionada.getDataRevisao(), status, revSelecionada.getObservacao() ,revSelecionada.getSessaoEstudo());
+                GerInterGrafica.getMyInstance().getGerDominio().alterarRevisao(revSelecionada.getIdRevisao(), revSelecionada.getDataRevisao(), status, observ ,revSelecionada.getSessaoEstudo());
                 JOptionPane.showMessageDialog(this, "Revisão alterar com sucesso.", "Alteração da Revisão de Estudo", JOptionPane.INFORMATION_MESSAGE);
 
 
@@ -301,7 +299,6 @@ public class DlgEditarRevisao extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCancelar;
     private javax.swing.JButton BtnSalvar;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
