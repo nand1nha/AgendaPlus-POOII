@@ -82,13 +82,8 @@ public class GerenciadorDominio {
         genDAO.excluir(obj);
     }
     
-    public List<Revisao> pesquisarRevisao(String pesq, int tipo) throws HibernateException {        
-        
-        switch ( tipo ) {
-            case 0: return revDAO.pesquisarPorMateria(pesq);
-            default : return null;
-        }
-
+    public List<Revisao> pesquisarRevisao(String pesq1, String pesq2) throws HibernateException {        
+        return revDAO.pesquisar(pesq1, pesq2);
     }
     
 }
