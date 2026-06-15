@@ -33,9 +33,9 @@ public class TableModelDesempenho extends AbstractTableModel{
         Desempenho desempenho = (Desempenho) listaDesempenho.get(rowIndex);
         
         switch(columnIndex){
-            case 0: return desempenho;
-            case 1: return desempenho;
-            case 2: return desempenho;
+            case 0: return desempenho.getMateria();
+            case 1: return desempenho.getMediaAcertos();
+            case 2: return desempenho.getStatus();
             
         }        
         return null;

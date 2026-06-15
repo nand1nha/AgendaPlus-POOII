@@ -421,7 +421,28 @@ public class FrmRevisao extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        String materia = ((Materia) jComboBox1.getSelectedItem()).getNome();
+        
+        if (materia == null) {
+            JOptionPane.showMessageDialog(this, "Selecione uma matéria.");
+            return;
+        }
+
+        
+        GerenciadorDominio gerDom;
+        try {
+            gerDom = new GerenciadorDominio();
+            List lista = gerDom.pesquisarRevisao(materia, 0);
+
+            if (lista.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "O sistema não tem nenhuma revisão registrada, cadastre uma sessão para calcular sua proxima revisão. ");
+            } else {
+                tblModelRevisao.setLista(lista);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Erro ao listar revisão " + ex);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown

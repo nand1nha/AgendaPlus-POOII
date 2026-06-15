@@ -6,6 +6,7 @@ package controller;
 
 import dao.ConexaoHibernate;
 import dao.GenericDAO;
+import dao.RevisaoDAO;
 import domain.Materia;
 import domain.Revisao;
 import domain.SessaoEstudo;
@@ -23,12 +24,15 @@ import org.hibernate.HibernateException;
 public class GerenciadorDominio {
     
     private GenericDAO genDAO;
+    private RevisaoDAO revDAO;
     
     public GerenciadorDominio() throws ClassNotFoundException, SQLException {
         //TESTE
         ConexaoHibernate.getSessionFactory().openSession();
         
         genDAO = new GenericDAO(); 
+        revDAO = new RevisaoDAO();
+        
     }
     
     public List<Materia> listarMateria() throws ClassNotFoundException, SQLException{
@@ -76,6 +80,15 @@ public class GerenciadorDominio {
     // EXCLUIR GENÉRICO
     public void excluir(Object obj) throws HibernateException {                                
         genDAO.excluir(obj);
+    }
+    
+    public List<Revisao> pesquisarRevisao(String pesq, int tipo) throws HibernateException {        
+        
+        switch ( tipo ) {
+            case 0: return revDAO.pesquisarPorMateria(pesq);
+            default : return null;
+        }
+
     }
     
 }
