@@ -19,7 +19,7 @@ import org.hibernate.Session;
  * @author 2024222760026
  */
 public class RevisaoDAO {
-    public List<Revisao> pesquisar(String pesq1, String pesq2) throws HibernateException{
+    public List<Revisao> pesquisar(int tipo, String pesq1, String pesq2) throws HibernateException{
         Session sessao = null;
         List<Revisao> lista = null; 
         
@@ -36,7 +36,17 @@ public class RevisaoDAO {
             
             //RESTRIÇÕES
             Predicate restricoes;
-            restricoes = builder.and(builder.like(tabela.get("sessaoEstudo").get("materia").get("nome"), pesq1 + '%'), builder.like(tabela.get("status"), pesq2 + '%'));
+            switch(tipo){
+                case 1: 
+                    restricoes = builder.and(builder.like(tabela.get("sessaoEstudo").get("materia").get("nome"), pesq1 + '%'), builder.like(tabela.get("status"), pesq2 + '%'));
+                    break;
+                case 2:
+                    restricoes = builder.like(tabela.get("sessaoEstudo").get("materia").get("nome"), pesq1 + '%');
+                    break;
+                default:
+                    restricoes = null;
+            }
+            
 
             
             // WHERE
@@ -56,6 +66,14 @@ public class RevisaoDAO {
         }
 
         return lista;
+    }
+    
+    public List<Revisao> pesquisarPorMateriaEStatus(String pesq1, String pesq2){
+        return pesquisar(1, pesq1, pesq2);
+    }
+    
+    public List<Revisao> pesquisarPorMateria(String pesq1){
+        return pesquisar(2, pesq1, null);
     }
     
 }

@@ -142,4 +142,14 @@ public class SessaoEstudo {
 
         return ((double) acertos / totalQuestoes) * 100;
     }
+
+    public Revisao getRevisao() {
+        return revisao;
+    }
+
+    public void setRevisao(Revisao revisao) {
+        this.revisao = revisao;
+    }
+    
+    
 }

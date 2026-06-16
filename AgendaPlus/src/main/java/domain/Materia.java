@@ -37,12 +37,12 @@ public class Materia {
     public Materia() {
     }
 
-    public Materia(int idMateria, String nome, String descricao, TipoNivelDificuldade dificuldade, Desempenho desepenho) {
+    public Materia(int idMateria, String nome, String descricao, TipoNivelDificuldade dificuldade, Desempenho desempenho) {
         this.idMateria = idMateria;
         this.nome = nome;
         this.descricao = descricao;
         this.dificuldade = dificuldade;
-        this.desempenho = desepenho;
+        this.desempenho = desempenho;
     }
 
     public Materia(String nome, String descricao, TipoNivelDificuldade dificuldade) {
@@ -63,20 +63,20 @@ public class Materia {
         this.dificuldade = dificuldade;
     }
 
-    public Materia(int idMateria, String nome, String descricao, TipoNivelDificuldade dificuldade, Desempenho desepenho, List<SessaoEstudo> sessaoEstudo) {
+    public Materia(int idMateria, String nome, String descricao, TipoNivelDificuldade dificuldade, Desempenho desempenho, List<SessaoEstudo> sessaoEstudo) {
         this.idMateria = idMateria;
         this.nome = nome;
         this.descricao = descricao;
         this.dificuldade = dificuldade;
-        this.desempenho = desepenho;
+        this.desempenho = desempenho;
         this.sessaoEstudo = sessaoEstudo;
     }
 
-    public Desempenho getDesepenho() {
+    public Desempenho getDesempenho() {
         return desempenho;
     }
 
-    public void setDesepenho(Desempenho desepenho) {
+    public void setDesempenho(Desempenho desepenho) {
         this.desempenho = desepenho;
     }
 
@@ -115,6 +115,14 @@ public class Materia {
 
     public void setIdMateria(int idMateria) {
         this.idMateria = idMateria;
+    }
+
+    public List<SessaoEstudo> getSessaoEstudo() {
+        return sessaoEstudo;
+    }
+
+    public void setSessaoEstudo(List<SessaoEstudo> sessaoEstudo) {
+        this.sessaoEstudo = sessaoEstudo;
     }
     
     

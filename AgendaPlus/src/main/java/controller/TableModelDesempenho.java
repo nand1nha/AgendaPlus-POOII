@@ -43,7 +43,7 @@ public class TableModelDesempenho extends AbstractTableModel{
 
     @Override
     public String getColumnName(int column) {
-        String nomes[] = {"Nome", "Descrição", "Dificuldade"};
+        String nomes[] = {"Matéria", "Média de Acertos", "Status"};
         return nomes[column]; 
     }
     

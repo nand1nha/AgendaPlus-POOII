@@ -6,13 +6,17 @@ package controller;
 
 import dao.ConexaoHibernate;
 import dao.GenericDAO;
+import dao.MateriaDAO;
 import dao.RevisaoDAO;
+import domain.Desempenho;
 import domain.Materia;
 import domain.Revisao;
 import domain.SessaoEstudo;
+import domain.TipoDesempenho;
 import domain.TipoNivelDificuldade;
 import domain.TipoStatus;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -25,6 +29,8 @@ public class GerenciadorDominio {
     
     private GenericDAO genDAO;
     private RevisaoDAO revDAO;
+    private MateriaDAO matDAO;
+    private DesempenhoService desempenhoService;
     
     public GerenciadorDominio() throws ClassNotFoundException, SQLException {
         //TESTE
@@ -32,6 +38,8 @@ public class GerenciadorDominio {
         
         genDAO = new GenericDAO(); 
         revDAO = new RevisaoDAO();
+        matDAO = new MateriaDAO();
+        desempenhoService = new DesempenhoService();
         
     }
     
@@ -82,8 +90,101 @@ public class GerenciadorDominio {
         genDAO.excluir(obj);
     }
     
-    public List<Revisao> pesquisarRevisao(String pesq1, String pesq2) throws HibernateException {        
-        return revDAO.pesquisar(pesq1, pesq2);
+    public List<Revisao> pesquisarPorMateriaEStatus(String pesq1, String pesq2) throws HibernateException {        
+        return revDAO.pesquisarPorMateriaEStatus(pesq1, pesq2);
     }
     
+    public List<Revisao> pesquisarPorMateria(String pesq1) throws HibernateException {        
+        return revDAO.pesquisarPorMateria(pesq1);
+    }
+    
+    public List<Desempenho> listarDesempenhos() {
+
+        List<Materia> materias =
+                matDAO.listarComSessoes();
+
+        List<Desempenho> desempenhos =
+                new ArrayList<>();
+
+        for (Materia materia : materias) {
+            desempenhos.add(
+                desempenhoService.gerarDesempenho(materia)
+            );
+        }
+
+        return desempenhos;
+    }
+    
+    public List<Desempenho> filtrarPorMateria(List<Desempenho> desempenhos,int idMateria) {
+
+         List<Desempenho> resultado = new ArrayList<>();
+
+        for (Desempenho d : desempenhos) {
+
+            if (d.getMateria().getIdMateria() == idMateria) {
+                resultado.add(d);
+                break;
+            }
+        }
+
+        return resultado;
+    }
+    
+    public Desempenho obterMelhorDesempenho() {
+
+        List<Desempenho> desempenhos =
+                listarDesempenhos();
+
+        Desempenho melhor = null;
+
+        for (Desempenho d : desempenhos) {
+
+            if (melhor == null ||
+                    d.getMediaAcertos() >
+                    melhor.getMediaAcertos()) {
+
+                melhor = d;
+            }
+        }
+
+        return melhor;
+    }
+    
+    public Desempenho obterMaiorEvolucao() {
+
+        List<Desempenho> lista = listarDesempenhos();
+
+        Desempenho melhor = null;
+
+        for (Desempenho d : lista) {
+
+            if (melhor == null ||
+                d.getPercentualEvolucao() >
+                melhor.getPercentualEvolucao()) {
+
+                melhor = d;
+            }
+        }
+
+        return melhor;
+    }
+    
+    public List<Materia> obterMateriasParaRevisao() {
+
+        List<Desempenho> desempenhos = listarDesempenhos();
+
+        List<Materia> materiasRevisao = new ArrayList<>();
+
+        for (Desempenho d : desempenhos) {
+
+            if (d.getStatus() ==
+                    TipoDesempenho.PRECISA_REVISAR) {
+
+                materiasRevisao.add(
+                        d.getMateria());
+            }
+        }
+
+        return materiasRevisao;
+    }
 }

@@ -5,6 +5,7 @@ import controller.GerenciadorDominio;
 import controller.TableModelRevisao;
 import domain.Materia;
 import domain.Revisao;
+import domain.SessaoEstudo;
 import domain.TipoStatus;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -69,7 +70,7 @@ public class FrmRevisao extends javax.swing.JFrame {
                         jTextField3.setText(formato.format(rev.getDataRevisao()));
                         jTextField4.setText(String.valueOf(rev.getSessaoEstudo().getTotalQuestoes()));
                         jTextField5.setText(String.valueOf(rev.getSessaoEstudo().getAcertos()));
-                        jTextField6.setText(String.valueOf(rev.getSessaoEstudo().getTotalQuestoes()/rev.getSessaoEstudo().getAcertos()) + "%");
+                        jTextField6.setText(String.valueOf(rev.getSessaoEstudo().getPercentualAcertos()) + "%");
                         jTextField7.setText(rev.getStatus().getDescricao());
                     }
                 }
@@ -161,6 +162,11 @@ public class FrmRevisao extends javax.swing.JFrame {
         jLabel10.setText("Status de Revisão:");
 
         jButton2.setText("Limpar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/png/16x16/database_search.png"))); // NOI18N
         jButton1.setText("Buscar");
@@ -441,7 +447,7 @@ public class FrmRevisao extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addGap(10, 10, 10)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -456,7 +462,7 @@ public class FrmRevisao extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String materia = ((Materia) jComboBox1.getSelectedItem()).getNome();
+        String materia = ((Materia) jComboBox1.getSelectedItem()).getNome();;
         String valor = jComboBox2.getSelectedItem().toString();
         
         if (materia == null) {
@@ -468,10 +474,10 @@ public class FrmRevisao extends javax.swing.JFrame {
         GerenciadorDominio gerDom;
         try {
             gerDom = new GerenciadorDominio();
-            List lista = gerDom.pesquisarRevisao(materia, valor);
+            List lista = gerDom.pesquisarPorMateriaEStatus(materia, valor);
 
             if (lista.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "O sistema não tem nenhuma revisão registrada, cadastre uma sessão para calcular sua proxima revisão. ");
+                JOptionPane.showMessageDialog(this, "O sistema não tem nenhuma revisão de " + materia + " registrada com status " + valor + ", cadastre uma sessão para calcular sua proxima revisão. ");
             } else {
                 tblModelRevisao.setLista(lista);
             }
@@ -508,8 +514,9 @@ public class FrmRevisao extends javax.swing.JFrame {
             if (JOptionPane.showConfirmDialog(this, "Deseja realmente excluir?", "Confirmar exclusão", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 
                 revSelecionada = (Revisao) tblModelRevisao.getItem(linha);
-                
+                SessaoEstudo sessao = revSelecionada.getSessaoEstudo();
                 GerInterGrafica.getMyInstance().getGerDominio().excluir(revSelecionada);
+                GerInterGrafica.getMyInstance().getGerDominio().excluir(sessao);
                 listarRevisao();
                 
             }
@@ -546,6 +553,10 @@ public class FrmRevisao extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        listarRevisao();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void listarRevisao() {
 
