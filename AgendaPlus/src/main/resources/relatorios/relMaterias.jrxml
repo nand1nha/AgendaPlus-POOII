@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fbe3cc66-901d-45ce-b6d0-addcc0dd5971">
 	<property name="ireport.zoom" value="1.2100000000000006"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="26"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -58,9 +58,6 @@
 				<reportElement x="200" y="40" width="161" height="20" uuid="c2d003b9-670c-47cf-8f59-5ce8fd2cf7b3"/>
 				<text><![CDATA[Sistema de Controle de Estudos]]></text>
 			</staticText>
-			<line>
-				<reportElement x="10" y="32" width="555" height="1" uuid="0b114582-4562-459d-ab2c-32257000aa2a"/>
-			</line>
 		</band>
 	</title>
 	<pageHeader>
@@ -104,9 +101,6 @@
 				<text><![CDATA[Revisão]]></text>
 			</staticText>
 			<line>
-				<reportElement x="10" y="32" width="555" height="1" uuid="d7ddd6cd-3a1f-43ab-9e35-da9f0951c013"/>
-			</line>
-			<line>
 				<reportElement x="0" y="0" width="555" height="1" uuid="641ab8c1-dd51-489a-a7d9-354869015fa7"/>
 			</line>
 		</band>
@@ -136,7 +130,11 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="27" splitType="Stretch"/>
+		<band height="22" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="12" width="555" height="1" uuid="d7ddd6cd-3a1f-43ab-9e35-da9f0951c013"/>
+			</line>
+		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="23" splitType="Stretch">
@@ -151,31 +149,34 @@
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="135" splitType="Stretch">
+		<band height="165" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="100" height="20" uuid="6ece802c-29e4-40c3-b33d-10532bddcfd6"/>
+				<reportElement x="0" y="15" width="100" height="20" uuid="6ece802c-29e4-40c3-b33d-10532bddcfd6"/>
 				<text><![CDATA[Total de matérias:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="32" width="100" height="20" uuid="8156e2f7-5843-453a-b8ae-8676088cdf98"/>
+				<reportElement x="0" y="52" width="119" height="20" uuid="8156e2f7-5843-453a-b8ae-8676088cdf98"/>
 				<text><![CDATA[Melhor desempenho:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="65" width="83" height="20" uuid="be9d1984-28f2-438a-a3d6-150dc4298a6e"/>
+				<reportElement x="0" y="85" width="119" height="20" uuid="be9d1984-28f2-438a-a3d6-150dc4298a6e"/>
 				<text><![CDATA[Maior evolução:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="101" width="100" height="20" uuid="66b867f3-3373-4f6b-bfb3-fbd9b50e571a"/>
+				<reportElement x="0" y="121" width="119" height="20" uuid="66b867f3-3373-4f6b-bfb3-fbd9b50e571a"/>
 				<text><![CDATA[Matérias para revisão:]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="52" width="119" height="1" uuid="7881eecc-997d-4244-b2db-a76df94a630f"/>
+				<reportElement x="0" y="71" width="119" height="1" uuid="7881eecc-997d-4244-b2db-a76df94a630f"/>
 			</line>
 			<line>
-				<reportElement x="0" y="85" width="119" height="1" uuid="4fdf89be-7bff-4690-b3bc-b1e7cc674c63"/>
+				<reportElement x="0" y="104" width="119" height="1" uuid="4fdf89be-7bff-4690-b3bc-b1e7cc674c63"/>
 			</line>
 			<line>
-				<reportElement x="0" y="121" width="119" height="1" uuid="407441a9-cec4-401d-b133-2686c1bdc88c"/>
+				<reportElement x="0" y="140" width="119" height="1" uuid="407441a9-cec4-401d-b133-2686c1bdc88c"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="fc8023ca-c629-4eed-9f02-fba19a647508"/>
 			</line>
 		</band>
 	</summary>
