@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author fsmar
  */
-public class DesempenhoService {
+public class DesempenhoFunc {
     
     public Desempenho gerarDesempenho(Materia materia) {
 
@@ -50,10 +50,6 @@ public class DesempenhoService {
         double soma = 0;
 
         for (SessaoEstudo sessao : sessoes) {
-             System.out.println(
-        "Percentual da sessão: " +
-        sessao.getPercentualAcertos()
-    );
             soma += sessao.getPercentualAcertos();
         }
 

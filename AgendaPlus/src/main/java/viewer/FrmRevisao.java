@@ -57,22 +57,24 @@ public class FrmRevisao extends javax.swing.JFrame {
                     int linha = jTable1.getSelectedRow();
                     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 
-                    if (linha >= 0) {
-
-                        Revisao rev =
-                                (Revisao) tblModelRevisao.getItem(linha);
-
-                        jTextArea1.setText(
-                                rev.getSessaoEstudo().getObservacao()
-                        );
-                        jTextField1.setText(rev.getSessaoEstudo().getMateria().getNome());
-                        jTextField2.setText(formato.format(rev.getSessaoEstudo().getDataEstudo()));
-                        jTextField3.setText(formato.format(rev.getDataRevisao()));
-                        jTextField4.setText(String.valueOf(rev.getSessaoEstudo().getTotalQuestoes()));
-                        jTextField5.setText(String.valueOf(rev.getSessaoEstudo().getAcertos()));
-                        jTextField6.setText(String.valueOf(rev.getSessaoEstudo().getPercentualAcertos()) + "%");
-                        jTextField7.setText(rev.getStatus().getDescricao());
+                    if (linha < 0 || linha >= tblModelRevisao.getRowCount()) {
+                        return;
                     }
+
+                    Revisao rev = (Revisao) tblModelRevisao.getItem(linha);
+
+                    if (rev == null) {
+                        return;
+                    }
+
+                    jTextArea1.setText(rev.getSessaoEstudo().getObservacao());
+                    jTextField1.setText(rev.getSessaoEstudo().getMateria().getNome());
+                    jTextField2.setText(formato.format(rev.getSessaoEstudo().getDataEstudo()));
+                    jTextField3.setText(formato.format(rev.getDataRevisao()));
+                    jTextField4.setText(String.valueOf(rev.getSessaoEstudo().getTotalQuestoes()));
+                    jTextField5.setText(String.valueOf(rev.getSessaoEstudo().getAcertos()));
+                    jTextField6.setText(String.valueOf(rev.getSessaoEstudo().getPercentualAcertos()) + "%");
+                    jTextField7.setText(rev.getStatus().getDescricao());
                 }
             }
         );
@@ -515,9 +517,8 @@ public class FrmRevisao extends javax.swing.JFrame {
                 
                 revSelecionada = (Revisao) tblModelRevisao.getItem(linha);
                 SessaoEstudo sessao = revSelecionada.getSessaoEstudo();
-                GerInterGrafica.getMyInstance().getGerDominio().excluir(revSelecionada);
                 GerInterGrafica.getMyInstance().getGerDominio().excluir(sessao);
-                listarRevisao();
+                tblModelRevisao.remover(linha);
                 
             }
 

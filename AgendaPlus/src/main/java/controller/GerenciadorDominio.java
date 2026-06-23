@@ -30,7 +30,7 @@ public class GerenciadorDominio {
     private GenericDAO genDAO;
     private RevisaoDAO revDAO;
     private MateriaDAO matDAO;
-    private DesempenhoService desempenhoService;
+    private DesempenhoFunc desempenhoService;
     
     public GerenciadorDominio() throws ClassNotFoundException, SQLException {
         //TESTE
@@ -39,7 +39,7 @@ public class GerenciadorDominio {
         genDAO = new GenericDAO(); 
         revDAO = new RevisaoDAO();
         matDAO = new MateriaDAO();
-        desempenhoService = new DesempenhoService();
+        desempenhoService = new DesempenhoFunc();
         
     }
     
