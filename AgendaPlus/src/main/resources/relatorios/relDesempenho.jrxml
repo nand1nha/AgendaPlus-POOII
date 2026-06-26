@@ -27,6 +27,12 @@
 	<field name="ultimaSessao" class="java.util.Date">
 		<fieldDescription><![CDATA[ultimaSessao]]></fieldDescription>
 	</field>
+	<variable name="média" class="java.lang.Double" calculation="Highest">
+		<variableExpression><![CDATA[$F{mediaAcertos}]]></variableExpression>
+	</variable>
+	<variable name="evolucao" class="java.lang.Double" calculation="Highest">
+		<variableExpression><![CDATA[$F{percentualEvolucao}]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -64,51 +70,59 @@
 	<columnHeader>
 		<band height="43" splitType="Stretch">
 			<staticText>
-				<reportElement x="51" y="23" width="100" height="20" uuid="36f9e949-acca-4385-b623-f2192e85edc1"/>
+				<reportElement x="19" y="23" width="100" height="20" uuid="36f9e949-acca-4385-b623-f2192e85edc1"/>
 				<text><![CDATA[Matéria]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="151" y="23" width="83" height="20" uuid="9d848b5e-831c-42f2-aad2-77bfa2389449"/>
+				<reportElement x="119" y="23" width="83" height="20" uuid="9d848b5e-831c-42f2-aad2-77bfa2389449"/>
 				<text><![CDATA[Média]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="234" y="23" width="59" height="20" uuid="11880eb7-c91c-446b-84dc-450b38d6d41d"/>
+				<reportElement x="202" y="23" width="59" height="20" uuid="11880eb7-c91c-446b-84dc-450b38d6d41d"/>
 				<text><![CDATA[Evolução]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="293" y="23" width="100" height="20" uuid="c4c46bdf-a775-4812-bca0-00149410daaa"/>
+				<reportElement x="261" y="23" width="100" height="20" uuid="c4c46bdf-a775-4812-bca0-00149410daaa"/>
 				<text><![CDATA[Status]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="393" y="23" width="100" height="20" uuid="aff7dd72-74eb-46bc-9721-965c2a82518f"/>
+				<reportElement x="361" y="23" width="100" height="20" uuid="aff7dd72-74eb-46bc-9721-965c2a82518f"/>
 				<text><![CDATA[Revisão]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="0" width="555" height="1" uuid="641ab8c1-dd51-489a-a7d9-354869015fa7"/>
 			</line>
+			<staticText>
+				<reportElement x="461" y="23" width="73" height="20" uuid="ba3875bc-1d8d-4755-b9c1-e4ff3c3b6363"/>
+				<text><![CDATA[Dificuldade]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="86" splitType="Stretch">
 			<textField>
-				<reportElement x="51" y="0" width="100" height="20" uuid="5b4ebff2-5d9e-4799-bbb7-0dbe266314f8"/>
+				<reportElement x="19" y="0" width="100" height="20" uuid="5b4ebff2-5d9e-4799-bbb7-0dbe266314f8"/>
 				<textFieldExpression><![CDATA[""+$F{materia}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="151" y="0" width="83" height="20" uuid="6831efc9-439f-46ca-8339-726cbe174b24"/>
+				<reportElement x="119" y="0" width="83" height="20" uuid="6831efc9-439f-46ca-8339-726cbe174b24"/>
 				<textFieldExpression><![CDATA[$F{mediaAcertos}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="234" y="0" width="59" height="20" uuid="72562e16-b7d0-4c4b-a466-793fcac18fae"/>
+				<reportElement x="202" y="0" width="59" height="20" uuid="72562e16-b7d0-4c4b-a466-793fcac18fae"/>
 				<textFieldExpression><![CDATA[$F{percentualEvolucao}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="293" y="0" width="100" height="20" uuid="c6afada6-bb3c-48f7-aaf1-328b2c9e9b1a"/>
+				<reportElement x="261" y="0" width="100" height="20" uuid="c6afada6-bb3c-48f7-aaf1-328b2c9e9b1a"/>
 				<textFieldExpression><![CDATA[""+$F{status}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="393" y="0" width="100" height="20" uuid="1c53a773-8bcd-41e4-bfd5-c93cf4eeed39"/>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="361" y="0" width="100" height="20" uuid="1c53a773-8bcd-41e4-bfd5-c93cf4eeed39"/>
 				<textFieldExpression><![CDATA[$F{proximaRevisao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="461" y="0" width="73" height="20" uuid="934dc794-0759-4c91-bda5-990051cb1008"/>
+				<textFieldExpression><![CDATA[$F{materia}.getDificuldade()]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -158,6 +172,22 @@
 			<textField>
 				<reportElement x="361" y="18" width="194" height="147" uuid="3aa49852-6c4d-4b65-ade3-076b42d5815d"/>
 				<textFieldExpression><![CDATA[$P{materiasRevisao}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="38" width="34" height="20" uuid="04b283d8-f4ca-459d-8ee0-360680905cf5"/>
+				<text><![CDATA[Média: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="98" width="51" height="20" uuid="73e1c43f-1ec8-4a10-8c9b-ef0e60bb708b"/>
+				<text><![CDATA[Evolução:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="34" y="38" width="100" height="20" uuid="4054eece-a6d5-410b-86b6-e4abcdb27516"/>
+				<textFieldExpression><![CDATA[$V{média}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="51" y="98" width="100" height="20" uuid="4c415979-c910-43b1-bc73-a0f392a250a7"/>
+				<textFieldExpression><![CDATA[$V{evolucao}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>
