@@ -3,6 +3,9 @@
 	<property name="ireport.zoom" value="1.1000000000000008"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="melhorDesempenho" class="java.lang.String"/>
+	<parameter name="melhorEvolucao" class="java.lang.String"/>
+	<parameter name="materiasRevisao" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -23,24 +26,6 @@
 	</field>
 	<field name="ultimaSessao" class="java.util.Date">
 		<fieldDescription><![CDATA[ultimaSessao]]></fieldDescription>
-	</field>
-	<field name="descricao" class="java.lang.String">
-		<fieldDescription><![CDATA[descricao]]></fieldDescription>
-	</field>
-	<field name="desempenho" class="domain.Desempenho">
-		<fieldDescription><![CDATA[desempenho]]></fieldDescription>
-	</field>
-	<field name="dificuldade" class="domain.TipoNivelDificuldade">
-		<fieldDescription><![CDATA[dificuldade]]></fieldDescription>
-	</field>
-	<field name="idMateria" class="java.lang.Integer">
-		<fieldDescription><![CDATA[idMateria]]></fieldDescription>
-	</field>
-	<field name="nome" class="java.lang.String">
-		<fieldDescription><![CDATA[nome]]></fieldDescription>
-	</field>
-	<field name="sessaoEstudo" class="java.util.List">
-		<fieldDescription><![CDATA[sessaoEstudo]]></fieldDescription>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
@@ -148,24 +133,32 @@
 	<summary>
 		<band height="165" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="15" width="100" height="20" uuid="6ece802c-29e4-40c3-b33d-10532bddcfd6"/>
-				<text><![CDATA[Total de matérias:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="73" width="100" height="20" uuid="8156e2f7-5843-453a-b8ae-8676088cdf98"/>
+				<reportElement x="0" y="18" width="100" height="20" uuid="8156e2f7-5843-453a-b8ae-8676088cdf98"/>
 				<text><![CDATA[Melhor desempenho:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="124" width="71" height="20" uuid="be9d1984-28f2-438a-a3d6-150dc4298a6e"/>
+				<reportElement x="0" y="78" width="71" height="20" uuid="be9d1984-28f2-438a-a3d6-150dc4298a6e"/>
 				<text><![CDATA[Maior evolução:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="260" y="73" width="101" height="20" uuid="66b867f3-3373-4f6b-bfb3-fbd9b50e571a"/>
+				<reportElement x="260" y="18" width="101" height="20" uuid="66b867f3-3373-4f6b-bfb3-fbd9b50e571a"/>
 				<text><![CDATA[Matérias para revisão:]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="0" width="555" height="1" uuid="eb4ea03f-5e4c-4602-a635-1405a9392e1c"/>
 			</line>
+			<textField>
+				<reportElement x="100" y="18" width="100" height="20" uuid="393196c0-db0e-4cae-8783-75686861426a"/>
+				<textFieldExpression><![CDATA[$P{melhorDesempenho}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="71" y="78" width="100" height="20" uuid="5f39af26-3ea9-4686-aa3c-d15e5a29c7b1"/>
+				<textFieldExpression><![CDATA[$P{melhorEvolucao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="361" y="18" width="194" height="147" uuid="3aa49852-6c4d-4b65-ade3-076b42d5815d"/>
+				<textFieldExpression><![CDATA[$P{materiasRevisao}]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>
