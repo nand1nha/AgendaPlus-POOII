@@ -174,10 +174,9 @@ public class DlgSessaoEstudo extends javax.swing.JDialog {
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtTotalQuest, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtPorcentagem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtAcertos, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
+                            .addComponent(txtAcertos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, Short.MAX_VALUE)
+                            .addComponent(txtTotalQuest, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                            .addComponent(txtPorcentagem, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addGap(21, 21, 21)
@@ -361,6 +360,7 @@ public class DlgSessaoEstudo extends javax.swing.JDialog {
             txtDataRevi.setValue(null);
             return;
         }
+
 
         double porcentagem = Math.round(((acertos * 100.0) / total) * 100.0) / 100.0;
         txtPorcentagem.setText(porcentagem + "%");
