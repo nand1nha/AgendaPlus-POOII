@@ -140,7 +140,7 @@ public class SessaoEstudo {
             return 0;
         }
 
-        return ((double) acertos / totalQuestoes) * 100;
+        return Math.round((((double) acertos / totalQuestoes) * 100) * 100.0) / 100.0;
     }
 
     public Revisao getRevisao() {

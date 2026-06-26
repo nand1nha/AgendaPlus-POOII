@@ -104,6 +104,12 @@ public class Revisao {
     public void setObservacao(String observacao) {
         this.observacao = observacao;
     }
+
+    @Override
+    public String toString() {
+        return sessaoEstudo.getMateria().getNome();
+    }
+    
     
     
 }

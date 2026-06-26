@@ -133,6 +133,11 @@ public class DlgSessaoEstudo extends javax.swing.JDialog {
         txtPorcentagem.setEditable(false);
         txtPorcentagem.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         txtPorcentagem.setEnabled(false);
+        txtPorcentagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPorcentagemActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Observação:");
 
@@ -325,72 +330,80 @@ public class DlgSessaoEstudo extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void txtPorcentagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPorcentagemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPorcentagemActionPerformed
+
     private void calculos() {
 
-        try {
+    try {
 
-            String totalTexto = txtTotalQuest.getText().trim();
-            String acertosTexto = txtAcertos.getText().trim();
+        String totalTexto = txtTotalQuest.getText().trim();
+        String acertosTexto = txtAcertos.getText().trim();
 
-            if (totalTexto.isEmpty() || acertosTexto.isEmpty()) {
-                txtPorcentagem.setText("");
-                txtDataRevi.setValue(null);
-                return;
-            }
-
-            int total = Integer.parseInt(totalTexto);
-            int acertos = Integer.parseInt(acertosTexto);
-
-            if (total <= 0) {
-                txtPorcentagem.setText("");
-                txtDataRevi.setValue(null);
-                return;
-            }
-
-            if (acertos < 0 || acertos > total) {
-                txtPorcentagem.setText("");
-                txtDataRevi.setValue(null);
-                return;
-            }
-
-            int porcentagem = (acertos * 100) / total;
-            txtPorcentagem.setText(porcentagem + "%");
-
-            String dataTexto = txtData.getText().trim();
-
-
-            if (dataTexto.replace("/", "").trim().isEmpty()) {
-                txtDataRevi.setValue(null);
-                return;
-            }
-
-            int diasRevisao;
-
-            if (porcentagem < 50) {
-                diasRevisao = 1;
-            } else if (porcentagem < 70) {
-                diasRevisao = 2;
-            } else if (porcentagem < 90) {
-                diasRevisao = 4;
-            } else {
-                diasRevisao = 7;
-            }
-
-            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-            LocalDate dataSessao = LocalDate.parse(dataTexto, formato);
-
-            LocalDate dataRevisao = dataSessao.plusDays(diasRevisao);
-
-            txtDataRevi.setValue(dataRevisao.format(formato));
-
-        } catch (NumberFormatException | DateTimeParseException e) {
-
+        if (totalTexto.isEmpty() || acertosTexto.isEmpty()) {
             txtPorcentagem.setText("");
             txtDataRevi.setValue(null);
-
+            return;
         }
+
+        int total = Integer.parseInt(totalTexto);
+        int acertos = Integer.parseInt(acertosTexto);
+
+        if (total <= 0) {
+            txtPorcentagem.setText("");
+            txtDataRevi.setValue(null);
+            return;
+        }
+
+        if (acertos < 0 || acertos > total) {
+            txtPorcentagem.setText("");
+            txtDataRevi.setValue(null);
+            return;
+        }
+
+        double porcentagem = Math.round(((acertos * 100.0) / total) * 100.0) / 100.0;
+        txtPorcentagem.setText(porcentagem + "%");
+
+        String dataTexto = txtData.getText().trim();
+
+        if (dataTexto.replace("/", "").trim().isEmpty()) {
+            txtDataRevi.setValue(null);
+            return;
+        }
+
+        int diasRevisao;
+
+        if (porcentagem < 50) {
+            diasRevisao = 1;
+        } else if (porcentagem < 70) {
+            diasRevisao = 2;
+        } else if (porcentagem < 90) {
+            diasRevisao = 4;
+        } else {
+            diasRevisao = 7;
+        }
+
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        LocalDate dataSessao = LocalDate.parse(dataTexto, formato);
+
+        LocalDate dataRevisao = dataSessao.plusDays(diasRevisao);
+        
+        // Se a revisão já passou, agenda para amanhã
+        if (dataRevisao.isBefore(LocalDate.now())) {
+            dataRevisao = LocalDate.now().plusDays(1);
+        }
+
+        txtDataRevi.setValue(dataRevisao.format(formato));
+
+    } catch (NumberFormatException | DateTimeParseException e) {
+
+        txtPorcentagem.setText("");
+        txtDataRevi.setValue(null);
+
     }
+}
     
     private void limparCampos() {
         txtAcertos.setText("");

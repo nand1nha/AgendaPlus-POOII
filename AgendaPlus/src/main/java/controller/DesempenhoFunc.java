@@ -53,7 +53,7 @@ public class DesempenhoFunc {
             soma += sessao.getPercentualAcertos();
         }
 
-        return soma / sessoes.size();
+        return Math.round((soma / sessoes.size()) * 100.0) / 100.0;
     }
 
     private double calcularPercentualEvolucao(Materia materia) {
@@ -63,18 +63,19 @@ public class DesempenhoFunc {
             return 0;
         }
 
-        sessoes.sort(
-            Comparator.comparing(SessaoEstudo::getDataEstudo)
-        );
+        sessoes.sort(Comparator.comparing(SessaoEstudo::getDataEstudo));
 
-        double primeiro =
-                sessoes.get(0).getPercentualAcertos();
+        double primeiro = sessoes.get(0).getPercentualAcertos();
+        double ultimo = sessoes.get(sessoes.size() - 1).getPercentualAcertos();
 
-        double ultimo =
-                sessoes.get(sessoes.size() - 1)
-                       .getPercentualAcertos();
+        // Evita divisão por zero
+        if (primeiro == 0) {
+            return 0;
+        }
 
-        return ultimo - primeiro;
+        double evolucao = ((ultimo - primeiro) / primeiro) * 100;
+
+        return Math.round(evolucao * 100.0) / 100.0;
     }
 
     private TipoDesempenho calcularStatus(double media) {

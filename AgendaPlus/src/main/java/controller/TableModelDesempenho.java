@@ -24,7 +24,7 @@ public class TableModelDesempenho extends AbstractTableModel{
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return 5;
     }
 
     @Override
@@ -34,8 +34,10 @@ public class TableModelDesempenho extends AbstractTableModel{
         
         switch(columnIndex){
             case 0: return desempenho.getMateria();
-            case 1: return desempenho.getMediaAcertos();
-            case 2: return desempenho.getStatus();
+            case 1: return desempenho.getPercentualEvolucao();
+            case 2: return desempenho.getMediaAcertos();
+            case 3: return desempenho.getStatus();
+            case 4: return desempenho.getProximaRevisao();
             
         }        
         return null;
@@ -43,7 +45,7 @@ public class TableModelDesempenho extends AbstractTableModel{
 
     @Override
     public String getColumnName(int column) {
-        String nomes[] = {"Matéria", "Média de Acertos", "Status"};
+        String nomes[] = {"Matéria", "Evolução(%)","Média de Acertos(%)", "Status", "Data da Revisão"};
         return nomes[column]; 
     }
     

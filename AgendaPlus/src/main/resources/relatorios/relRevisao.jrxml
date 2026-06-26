@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fbe3cc66-901d-45ce-b6d0-addcc0dd5971">
+	<property name="ireport.zoom" value="1.1000000000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="idRevisao" class="java.lang.Integer">
+		<fieldDescription><![CDATA[idRevisao]]></fieldDescription>
+	</field>
+	<field name="sessaoEstudo" class="domain.SessaoEstudo">
+		<fieldDescription><![CDATA[sessaoEstudo]]></fieldDescription>
+	</field>
+	<field name="status" class="domain.TipoStatus">
+		<fieldDescription><![CDATA[status]]></fieldDescription>
+	</field>
+	<field name="dataRevisao" class="java.util.Date">
+		<fieldDescription><![CDATA[dataRevisao]]></fieldDescription>
+	</field>
+	<variable name="totalRev" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{idRevisao}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="555" height="30" uuid="56778b95-7bb3-4bd2-84fc-59c309292c6d"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATÓRIO DE REVISÃO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="40" width="161" height="20" uuid="c2d003b9-670c-47cf-8f59-5ce8fd2cf7b3"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Sistema de Controle de Estudos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="15" width="83" height="20" uuid="f4ae99af-03ce-44a7-8546-be277e6fa572"/>
+				<text><![CDATA[Data de emissão:]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="83" y="15" width="100" height="20" uuid="1fcf2a26-b016-47c8-b949-df98c76522e2"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="aedda8a7-94ec-44b0-8d10-b4d2aaec6a6a"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="43" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="641ab8c1-dd51-489a-a7d9-354869015fa7"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="23" width="25" height="20" uuid="90cda191-cf7b-4ac6-a8bd-0a0a7c683582"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="23" width="75" height="20" uuid="9a520d54-33ff-4650-9e4c-fa2d1cf751df"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Matéria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="23" width="100" height="20" uuid="2441a141-adbd-4e5c-973f-56f542c213ce"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="23" width="48" height="20" uuid="67cf9dd2-3c96-4a16-951d-af4839db6220"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Questões]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="248" y="23" width="49" height="20" uuid="619d51f2-1af8-48a9-925f-fbf2ca178943"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Acertos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="23" width="63" height="20" uuid="c10693d6-a4e7-4c2e-b48e-18665aedc964"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Acertos (%)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="23" width="99" height="20" uuid="b56cdb4f-514b-44a7-b565-e892c8971145"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Estudo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="459" y="23" width="96" height="20" uuid="7333e4c4-a36f-4162-baef-2140edfd7730"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Revisão]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="25" height="20" uuid="846ea23b-3e49-4b2c-974e-0a3d827f0d2a"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{idRevisao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="0" width="75" height="20" uuid="fd5fff52-dca6-402e-be0b-41f29c4bab8b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{sessaoEstudo}.getRevisao()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="0a35e7ee-9bb8-4e92-89fc-b6ab05374dc9"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[""+$F{status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="48" height="20" uuid="3dd4a24c-7d24-4473-821a-383893262ea0"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{sessaoEstudo}.getTotalQuestoes()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="0" width="49" height="20" uuid="59c44312-44ae-48ca-903e-17dce838e2bc"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{sessaoEstudo}.getAcertos()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="297" y="0" width="63" height="20" uuid="22b325b2-8502-409b-bcce-90aff92b708b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{sessaoEstudo}.getPercentualAcertos()]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="360" y="0" width="99" height="20" uuid="09590bd9-4068-4832-99e3-31cf77b05a05"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{sessaoEstudo}.getDataEstudo()]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="459" y="0" width="96" height="20" uuid="ba584db2-205d-4d7a-97d1-c6a2cfeae86e"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{dataRevisao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="43" splitType="Stretch">
+			<textField>
+				<reportElement x="517" y="3" width="38" height="20" uuid="b7ad3959-3757-4757-8a44-ba910725982f"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="481" y="3" width="36" height="20" uuid="7bd4969c-637f-49f8-903f-0b75879e018c"/>
+				<text><![CDATA[Página]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="20" width="555" height="1" uuid="1e10b670-ff79-443f-8ae0-3dd27ba474d5"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="38" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="15" width="83" height="20" uuid="6ece802c-29e4-40c3-b33d-10532bddcfd6"/>
+				<text><![CDATA[Total de revisões:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="eb4ea03f-5e4c-4602-a635-1405a9392e1c"/>
+			</line>
+			<textField>
+				<reportElement x="83" y="15" width="100" height="20" uuid="d0abf40b-3937-4153-93c2-e4ebb6d83855"/>
+				<textFieldExpression><![CDATA[$V{totalRev}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

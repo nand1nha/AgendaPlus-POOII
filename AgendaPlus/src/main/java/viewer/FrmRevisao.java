@@ -106,6 +106,7 @@ public class FrmRevisao extends javax.swing.JFrame {
         BtnEditar1 = new javax.swing.JButton();
         BtnExcluir = new javax.swing.JButton();
         BtnVoltar = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -268,6 +269,14 @@ public class FrmRevisao extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/png/16x16/down.png"))); // NOI18N
+        jButton3.setText("Relatorio");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -278,6 +287,8 @@ public class FrmRevisao extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(BtnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(18, 18, 18)
                 .addComponent(BtnVoltar)
                 .addContainerGap())
         );
@@ -288,7 +299,8 @@ public class FrmRevisao extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnExcluir)
                     .addComponent(BtnEditar1)
-                    .addComponent(BtnVoltar))
+                    .addComponent(BtnVoltar)
+                    .addComponent(jButton3))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -559,6 +571,11 @@ public class FrmRevisao extends javax.swing.JFrame {
         listarRevisao();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        List lista = tblModelRevisao.getLista();
+        GerInterGrafica.getMyInstance().getGerRelatorio().relComLista(lista, "relRevisao.jasper");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     private void listarRevisao() {
 
         GerenciadorDominio gerDom;
@@ -608,6 +625,7 @@ public class FrmRevisao extends javax.swing.JFrame {
     private javax.swing.JButton BtnVoltar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;

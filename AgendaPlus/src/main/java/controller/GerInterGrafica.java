@@ -40,11 +40,13 @@ public class GerInterGrafica {
     private DlgEditarRevisao janEditarRevisao;
     
     private GerenciadorDominio gerDominio;
+    private GerenciadorRelatorios gerRelatorio;
     
 
     private GerInterGrafica() {
         try {
             gerDominio = new GerenciadorDominio();
+            gerRelatorio = new GerenciadorRelatorios();
         } catch (ClassNotFoundException | SQLException ex) {
             JOptionPane.showMessageDialog(null, ex,  "Inicialização", JOptionPane.ERROR_MESSAGE);
             System.exit(-1);
@@ -61,7 +63,10 @@ public class GerInterGrafica {
         return gerDominio;
     }
 
-    
+    public GerenciadorRelatorios getGerRelatorio() {
+        return gerRelatorio;
+    }
+
     private JDialog abrirJanela(java.awt.Frame parent, JDialog dlg, Class classe) {
         if (dlg == null){     
             try {

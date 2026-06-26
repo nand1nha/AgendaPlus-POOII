@@ -56,6 +56,7 @@
 			</staticText>
 			<staticText>
 				<reportElement x="200" y="40" width="161" height="20" uuid="c2d003b9-670c-47cf-8f59-5ce8fd2cf7b3"/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[Sistema de Controle de Estudos]]></text>
 			</staticText>
 		</band>
