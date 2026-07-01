@@ -6,8 +6,10 @@ package controller;
 
 import domain.Desempenho;
 import domain.Materia;
+import domain.Revisao;
 import domain.SessaoEstudo;
 import domain.TipoDesempenho;
+import domain.TipoStatus;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -121,7 +123,6 @@ public class DesempenhoFunc {
             return null;
         }
 
-        Date hoje = new Date();
         Date proxima = null;
 
         for (SessaoEstudo sessao : sessoes) {
@@ -130,20 +131,20 @@ public class DesempenhoFunc {
                 continue;
             }
 
-            Date dataRevisao =
-                    sessao.getRevisao().getDataRevisao();
+            Revisao revisao = sessao.getRevisao();
+
+            if (revisao.getStatus() == TipoStatus.REALIZADA) {
+                continue;
+            }
+
+            Date dataRevisao = revisao.getDataRevisao();
 
             if (dataRevisao == null) {
                 continue;
             }
 
-            if (dataRevisao.after(hoje)) {
-
-                if (proxima == null ||
-                        dataRevisao.before(proxima)) {
-
-                    proxima = dataRevisao;
-                }
+            if (proxima == null || dataRevisao.before(proxima)) {
+                proxima = dataRevisao;
             }
         }
 
